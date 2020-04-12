@@ -1,5 +1,7 @@
 package application.view;
 
+import application.util.Constants;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -18,7 +20,7 @@ public class AccountCreationView extends JPanel implements View{
 
 	@Override
 	public void initComponents() {
-		lblAccountCreation = new JLabel("Account Creation");
+		lblAccountCreation = new JLabel(Constants.ACCOUNTS);
 		lblAccountCreation.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		lblAccountCreation.setBounds(146, 121, 169, 38);
 		add(lblAccountCreation);
