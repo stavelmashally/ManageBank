@@ -1,20 +1,7 @@
-out/
-.idea/
-.idea_modules/
-*.iml
-*.ipr
-*.iws
+.DS_Store
+/.idea/
 
 .settings/
-bin/
-tmp/
-.metadata
+.buildpath
 .classpath
 .project
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.loadpath
-.factorypath
