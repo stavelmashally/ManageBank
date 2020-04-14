@@ -54,7 +54,7 @@ public class LoginView extends JFrame implements View, ActionListener, MouseList
 		lblSignin = new JLabel("Signin");
 		lblSignin.setForeground(Color.DARK_GRAY);
 		lblSignin.setFont(new Font("SansSerif", Font.BOLD, 24));
-		lblSignin.setBounds(331, 37, 102, 32);
+		lblSignin.setBounds(331, 36, 102, 32);
 		contentPane.add(lblSignin);
 
 		lblUsername = new JLabel("Username");
