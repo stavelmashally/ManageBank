@@ -10,20 +10,16 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class AccountCreationView extends JPanel implements View{
+public class CreateAccountView extends JPanel implements View {
 
-	
-	
-	
-	
 
-	@Override
-	public void initComponents() {
-	
-	}
+    @Override
+    public void initComponents() {
 
-	@Override
-	public void setListeners() {
+    }
 
-	}
+    @Override
+    public void setListeners() {
+
+    }
 }

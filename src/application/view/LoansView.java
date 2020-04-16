@@ -5,7 +5,7 @@ import application.util.Constants;
 import javax.swing.*;
 import java.awt.*;
 
-public class LoansView extends JPanel implements View{
+public class LoansView extends JPanel implements View {
 
     JLabel lblLoans;
 

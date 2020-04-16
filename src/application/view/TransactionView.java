@@ -3,11 +3,11 @@ package application.view;
 import javax.swing.*;
 import java.awt.*;
 
-public class TransactionsView extends JPanel implements View {
+public class TransactionView extends JPanel implements View {
 
     JLabel lblTitle;
 
-    public TransactionsView(){
+    public TransactionView() {
         setBackground(Color.WHITE);
         setLayout(null);
         initComponents();
