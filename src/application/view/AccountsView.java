@@ -28,7 +28,6 @@ public class AccountsView extends JPanel implements View, ActionListener {
 
     @Override
     public void initComponents() {
-
         // Search bar
         tfSearch = new JTextField();
         tfSearch.setBounds(68, 44, 361, 25);

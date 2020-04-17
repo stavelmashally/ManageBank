@@ -4,14 +4,19 @@ import application.util.Constants;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class HomeView extends JFrame implements View, MouseListener {
+public class HomeView extends JFrame implements View, MouseListener, ActionListener {
 
     private JPanel contentPane;
     private JPanel menuIPanel;
+    private ExitButton btnExit;
     private JPanel titlePanel;
     private JLabel lblTitle;
     private JLabel lblPath;
@@ -21,8 +26,8 @@ public class HomeView extends JFrame implements View, MouseListener {
     private MenuItem createAccountItem;
     private MenuItem transactionItem;
     private MenuItem loansItem;
+    private JLabel lblLogo;
     private JLabel lblManagebank;
-    private JLabel lblExit;
 
     public HomeView() {
         setUndecorated(true);
@@ -34,13 +39,17 @@ public class HomeView extends JFrame implements View, MouseListener {
 
     @Override
     public void initComponents() {
-
         // Main panel
         contentPane = new JPanel();
         contentPane.setBackground(Color.WHITE);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(null);
         setContentPane(contentPane);
+
+        // Exit button
+        btnExit = new ExitButton();
+        btnExit.setBounds(952, 0, 48, 25);
+        contentPane.add(btnExit);
 
         // home title
         titlePanel = new JPanel(null);
@@ -66,20 +75,14 @@ public class HomeView extends JFrame implements View, MouseListener {
         lblPath.setBounds(119, 33, 135, 15);
         titlePanel.add(lblPath);
 
-        // Exit label
-        lblExit = new JLabel(Constants.EXIT_LABEL);
-        lblExit.setFont(new Font(Constants.APP_FONT, Font.BOLD, 22));
-        lblExit.setForeground(new Color(33, 150, 243));
-        lblExit.setBounds(971, 4, 17, 27);
-        contentPane.add(lblExit);
-
         createMenu();
         createScreens();
     }
 
     @Override
     public void setListeners() {
-        lblExit.addMouseListener(this);
+        btnExit.addActionListener(this);
+        btnExit.setActionCommand(Constants.EXIT_LABEL);
         accountsItem.addMouseListener(this);
         createAccountItem.addMouseListener(this);
         transactionItem.addMouseListener(this);
@@ -95,7 +98,7 @@ public class HomeView extends JFrame implements View, MouseListener {
         contentPane.add(menuIPanel);
 
         // Menu logo
-        JLabel lblLogo = new JLabel();
+        lblLogo = new JLabel();
         lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
         lblLogo.setIcon(new ImageIcon(HomeView.class.getResource(Constants.LOGO_ICON)));
         lblLogo.setBounds(0, 12, 220, 63);
@@ -140,11 +143,18 @@ public class HomeView extends JFrame implements View, MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-        if (e.getComponent().equals(lblExit)) {
+    public void actionPerformed(ActionEvent event) {
+        if (event.getActionCommand().equals(Constants.EXIT_LABEL)) {
             System.exit(0);
         }
-        switch (e.getComponent().getName()) {
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent event) {
+        if (event.getComponent().equals(btnExit)) {
+            System.exit(0);
+        }
+        switch (event.getComponent().getName()) {
             case Constants.ACCOUNTS:
                 changeScreen(Constants.ACCOUNTS, Constants.ACCOUNTS_TITLE);
                 break;
@@ -161,28 +171,28 @@ public class HomeView extends JFrame implements View, MouseListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        if (e.getComponent() instanceof MenuItem) {
-            JPanel parent = (JPanel) e.getSource();
+    public void mouseEntered(MouseEvent event) {
+        if (event.getComponent() instanceof MenuItem) {
+            JPanel parent = (JPanel) event.getSource();
             parent.setBackground(new Color(144, 202, 249));
             parent.revalidate();
         }
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
-        if (e.getComponent() instanceof MenuItem) {
-            JPanel parent = (JPanel) e.getSource();
+    public void mouseExited(MouseEvent event) {
+        if (event.getComponent() instanceof MenuItem) {
+            JPanel parent = (JPanel) event.getSource();
             parent.setBackground(null);
             parent.revalidate();
         }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent event) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent event) {
     }
 }
