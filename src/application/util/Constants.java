@@ -11,6 +11,16 @@ public class Constants {
     public static final String SEARCH_BUTTON = "Search";
     public static final String BASE_PATH = "Home/";
 
+    public static final String ACCOUNT_DETAILS_LABEL = "Account Details";
+    public static final String ID_LABEL = "Customer ID";
+    public static final String FNAME_LABEL = "First Name";
+    public static final String LNAME_LABEL = "Last Name";
+    public static final String ADDRESS_LABEL = "Address";
+    public static final String PHONE_LABEL = "Phone";
+    public static final String EMAIL_LABEL = "Email";
+    public static final String CREATE_BUTTON = "Create";
+    public static final String CLEAR_BUTTON = "Clear";
+
     public static final String ACCOUNTS = "Accounts";
     public static final String CREATE_ACCOUNT = "Create Account";
     public static final String TRANSACTION = "Transaction";
