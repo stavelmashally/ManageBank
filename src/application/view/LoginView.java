@@ -1,5 +1,6 @@
 package application.view;
 
+import application.controllers.LoginController;
 import application.util.Constants;
 
 import javax.swing.*;
@@ -11,28 +12,21 @@ import javax.swing.border.LineBorder;
 
 public class LoginView extends JFrame implements View, ActionListener {
 
-    private JPanel mainPanel;
-    private JPanel sidePanel;
-    private ExitButton btnExit;
-    private JLabel lblSignin;
-    private JLabel lblUsername;
-    private JTextField tfUsername;
-    private JLabel lblPassword;
-    private JPasswordField passwordField;
-    private JButton btnLogin;
-    private JLabel lblManagebank;
-    private JLabel lblLogo;
+    LoginController controller;
 
     public LoginView() {
-        setUndecorated(true);
-        setSize(600, 400);
-        setLocationRelativeTo(null);
         initComponents();
         setListeners();
+        controller = new LoginController(this);
     }
 
     @Override
     public void initComponents() {
+
+        setUndecorated(true);
+        setSize(600, 400);
+        setLocationRelativeTo(null);
+
         // Main panel
         mainPanel = new JPanel();
         mainPanel.setBackground(new Color(245, 245, 245));
@@ -121,15 +115,35 @@ public class LoginView extends JFrame implements View, ActionListener {
         btnExit.setActionCommand(Constants.EXIT_LABEL);
     }
 
+    public void showHomeScreen(){
+        new HomeView().setVisible(true);
+        dispose();
+    }
+
+    public void displayError(String msg){
+        JOptionPane.showMessageDialog(this, msg);
+    }
+
     @Override
     public void actionPerformed(ActionEvent event) {
         if (event.getActionCommand().equals(Constants.EXIT_LABEL)) {
             System.exit(0);
         }
         if (event.getActionCommand().equals(Constants.LOGIN_LABEL)) {
-            // Navigate to home screen
-            new HomeView().setVisible(true);
-            dispose();
+            controller.login(tfUsername.getText(), String.valueOf(passwordField.getPassword()));
         }
     }
+
+
+    private JPanel mainPanel;
+    private JPanel sidePanel;
+    private ExitButton btnExit;
+    private JLabel lblSignin;
+    private JLabel lblUsername;
+    private JTextField tfUsername;
+    private JLabel lblPassword;
+    private JPasswordField passwordField;
+    private JButton btnLogin;
+    private JLabel lblManagebank;
+    private JLabel lblLogo;
 }

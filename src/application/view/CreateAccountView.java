@@ -1,5 +1,6 @@
 package application.view;
 
+import application.controllers.CreateAccountController;
 import application.util.Constants;
 
 import javax.swing.JPanel;
@@ -19,19 +20,7 @@ import javax.swing.DebugGraphics;
 
 public class CreateAccountView extends JPanel implements View, ActionListener {
 
-	private JTextField tfFname;
-	private JTextField tfLname;
-	private JTextField tfId;
-	private JTextField tfEmail;
-	private JTextField tfPhone;
-	private JTextField tfAddress;
-	private JButton btnCreate;
-	private JButton btnClear;
-	private JLabel lblAccountDetails;
-	private ButtonGroup rdbtnGroup;
-	private JRadioButton rdbtnNormal;
-	private JRadioButton rdbtnBusiness;
-	private JRadioButton rdbtnOverdraft;
+	CreateAccountController controller;
 
 	public CreateAccountView() {
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -40,6 +29,7 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		setBackground(Color.WHITE);
 		initComponents();
 		setListeners();
+		controller = new CreateAccountController(this);
 	}
 
 
@@ -145,7 +135,7 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		btnClear.setActionCommand(Constants.CLEAR_BUTTON);
 		rdbtnBusiness.setActionCommand("Business");
 		rdbtnNormal.setActionCommand("Normal");
-		rdbtnOverdraft.setActionCommand("Overdraft");
+		rdbtnOverdraft.setActionCommand("Savings");
     }
 
 	@Override
@@ -169,4 +159,18 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 			tfAddress.setText(Constants.ADDRESS_LABEL);
 		}
 	}
+
+	private JTextField tfFname;
+	private JTextField tfLname;
+	private JTextField tfId;
+	private JTextField tfEmail;
+	private JTextField tfPhone;
+	private JTextField tfAddress;
+	private JButton btnCreate;
+	private JButton btnClear;
+	private JLabel lblAccountDetails;
+	private ButtonGroup rdbtnGroup;
+	private JRadioButton rdbtnNormal;
+	private JRadioButton rdbtnBusiness;
+	private JRadioButton rdbtnOverdraft;
 }
