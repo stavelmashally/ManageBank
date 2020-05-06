@@ -1,5 +1,5 @@
 package application.view;
-
+import java.awt.event.MouseEvent;
 import application.controllers.CreateAccountController;
 import application.util.Constants;
 
@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
@@ -20,7 +22,17 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		controller = new CreateAccountController(this);
 	}
 
-
+	public MouseAdapter clearText(JTextField j){
+		return new MouseAdapter(){
+	        @Override
+	        public void mouseClicked(MouseEvent e){
+	        	if(j.getText().equals(j.getToolTipText()))
+	        		j.setText("");
+	        	}
+	    };
+	}
+	
+    
     @Override
     public void initComponents() {
 
@@ -33,56 +45,67 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		lblAccountDetails.setFont(new Font(Constants.APP_FONT, Font.PLAIN, 24));
 		lblAccountDetails.setBounds(70, 40, 214, 38);
 		add(lblAccountDetails);
+		 
+		
+		
 
-		tfFname = new JTextField();
-		tfFname.setBorder(new LineBorder(new Color(192, 192, 192), 1));
+		tfFname = new JTextField(Constants.FNAME_LABEL);
+		tfFname.setToolTipText(Constants.FNAME_LABEL);
+		tfFname.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
+		tfFname.addMouseListener(clearText(tfFname));
 		tfFname.setForeground(Color.GRAY);
-		tfFname.setText(Constants.FNAME_LABEL);
+		tfFname.setColumns(10);
 		tfFname.setBounds(70, 100, 260, 30);
 		add(tfFname);
 
-		tfLname = new JTextField();
+		tfLname = new JTextField(Constants.LNAME_LABEL);
+		tfLname.setToolTipText(Constants.LNAME_LABEL);
 		tfLname.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
-		tfLname.setForeground(Color.GRAY);
-		tfLname.setText(Constants.LNAME_LABEL);
+		tfLname.addMouseListener(clearText(tfLname));
+		tfLname.setForeground(Color.GRAY);	
 		tfLname.setColumns(10);
 		tfLname.setBounds(70, 150, 260, 30);
 		add(tfLname);
 
-		tfId = new JTextField();
+		tfId = new JTextField(Constants.ID_LABEL);
+		tfId.setToolTipText(Constants.ID_LABEL);
 		tfId.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
+		tfId.addMouseListener(clearText(tfId));
 		tfId.setForeground(Color.GRAY);
-		tfId.setText(Constants.ID_LABEL);
 		tfId.setColumns(10);
 		tfId.setBounds(70, 200, 260, 30);
 		add(tfId);
 
-		tfEmail = new JTextField();
+		tfEmail = new JTextField(Constants.EMAIL_LABEL);
+		tfEmail.setToolTipText(Constants.EMAIL_LABEL);
 		tfEmail.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
+		tfEmail.addMouseListener(clearText(tfEmail));
 		tfEmail.setForeground(Color.GRAY);
-		tfEmail.setText(Constants.EMAIL_LABEL);
 		tfEmail.setColumns(10);
 		tfEmail.setBounds(70, 250, 260, 30);
 		add(tfEmail);
 
-		tfPhone = new JTextField();
+		tfPhone = new JTextField(Constants.PHONE_LABEL);
+		tfPhone.setToolTipText(Constants.PHONE_LABEL);
 		tfPhone.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
+		tfPhone.addMouseListener(clearText(tfPhone));
 		tfPhone.setForeground(Color.GRAY);
-		tfPhone.setText(Constants.PHONE_LABEL);
 		tfPhone.setColumns(10);
 		tfPhone.setBounds(70, 300, 260, 30);
 		add(tfPhone);
 
-		tfAddress = new JTextField();
+		tfAddress = new JTextField(Constants.ADDRESS_LABEL);
+		tfAddress.setToolTipText(Constants.ADDRESS_LABEL);
 		tfAddress.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
+		tfAddress.addMouseListener(clearText(tfAddress));
 		tfAddress.setForeground(Color.GRAY);
-		tfAddress.setText(Constants.ADDRESS_LABEL);
 		tfAddress.setColumns(10);
 		tfAddress.setBounds(70, 350, 260, 30);
 		add(tfAddress);
 
 		// Account type Radio Buttons
 		rdbtnGroup = new ButtonGroup();
+		
 		
 		rdbtnNormal = new JRadioButton("Normal");
 		rdbtnNormal.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
