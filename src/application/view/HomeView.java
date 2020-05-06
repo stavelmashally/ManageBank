@@ -87,6 +87,11 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
         loansItem.addMouseListener(this);
     }
 
+
+    public void displayMessage(String msg) {
+
+    }
+
     private void createMenu() {
         // Initiate menu panel
         menuIPanel = new JPanel();

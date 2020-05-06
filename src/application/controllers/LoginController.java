@@ -1,37 +1,37 @@
 package application.controllers;
 
-import application.dao.EmployeeDAO;
-import application.dao.EmployeeDAOImpl;
+import application.model.dao.EmployeeDao;
 import application.model.Employee;
 import application.view.LoginView;
 
 public class LoginController{
 
     LoginView view;
-    EmployeeDAO employeeDAO;
+    EmployeeDao employeeDao;
 
     public LoginController(LoginView loginView){
         this.view = loginView;
-        employeeDAO = new EmployeeDAOImpl();
+        employeeDao = new EmployeeDao();
     }
 
-    public void login(String firstName, String password){
+    public void login(String id, String password){
 
-        if (firstName.isEmpty() || password.isEmpty()){
+        if (id.isEmpty() || password.isEmpty()){
             return;
         }
 
-        if (password.length() < 3){
-            view.displayError("Password to short!");
+        if (password.length() < 6 || id.length() < 3){
+            view.displayMessage("Wrong Id or Password!");
             return;
         }
 
-        for (Employee emp : employeeDAO.getAllEmployees()) {
-            if(emp.getFirstName().equals(firstName) && emp.getPassword().equals(password)){
-                view.showHomeScreen();
-                return;
-            }
+        Employee employee = employeeDao.findById(Integer.parseInt(id));
+
+        if(employee != null && employee.getPassword().equals(password)){
+            view.showHomeScreen();
+        } else {
+            view.displayMessage("Failed to Login");
         }
-        view.displayError("Failed to Login");
+
     }
 }

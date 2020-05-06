@@ -2,9 +2,6 @@ package application.util;
 
 import application.model.Employee;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DatabaseManager {
 
     private static DatabaseManager instance;
@@ -18,20 +15,12 @@ public class DatabaseManager {
 
     private DatabaseManager(){}
 
-    public List<Employee> executeQuery(String sql){
+    public Employee executeQuery(String sql){
 
-        List<Employee> employeeList = new ArrayList<>();
+        Employee employee = new Employee();
+        employee.setId(111);
+        employee.setPassword("123456");
 
-        Employee employee1 = new Employee();
-        employee1.setFirstName("stav");
-        employee1.setPassword("123");
-
-        Employee employee2 = new Employee();
-        employee2.setFirstName("sara");
-        employee2.setPassword("123");
-        employeeList.add(employee1);
-        employeeList.add(employee2);
-
-        return employeeList;
+        return employee;
     }
 }

@@ -115,13 +115,14 @@ public class LoginView extends JFrame implements View, ActionListener {
         btnExit.setActionCommand(Constants.EXIT_LABEL);
     }
 
-    public void showHomeScreen(){
-        new HomeView().setVisible(true);
-        dispose();
+
+    public void displayMessage(String msg) {
+        JOptionPane.showMessageDialog(this, msg);
     }
 
-    public void displayError(String msg){
-        JOptionPane.showMessageDialog(this, msg);
+    public void showHomeScreen(){
+        dispose();
+        new HomeView().setVisible(true);
     }
 
     @Override

@@ -26,4 +26,8 @@ public class TransactionView extends JPanel implements View {
     public void setListeners() {
 
     }
+
+    public void displayMessage(String msg) {
+        JOptionPane.showMessageDialog(this, msg);
+    }
 }

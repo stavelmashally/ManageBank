@@ -8,10 +8,8 @@ public class BankAccount {
     private Date creationDate;
     private String accountType;
 
-    public BankAccount(int accountNo, int customerId, double balance, Date creationDate, String accountType) {
-        this.accountNo = accountNo;
+    public BankAccount(int customerId, Date creationDate, String accountType) {
         this.customerId = customerId;
-        this.balance = balance;
         this.creationDate = creationDate;
         this.accountType = accountType;
     }

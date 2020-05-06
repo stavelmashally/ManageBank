@@ -1,30 +1,28 @@
 package application.view;
 
+import application.model.BankAccount;
+
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
 public class AccountTableModel extends AbstractTableModel {
 
-    private final String[] columnNames = {"Account No","Name","Type", "Creation Date", "Amount"};
-    private List<Account> accountList;
+    private final String[] columnNames = {"Account No","Customer Id","Type", "Creation Date", "Balance"};
+    private List<BankAccount> bankAccountList;
 
     public AccountTableModel(){
     }
 
-    public void setList(List<Account> accounts){
-        this.accountList = accounts;
+    public void setList(List<BankAccount> bankAccounts){
+        this.bankAccountList = bankAccounts;
     }
 
     @Override
     public int getRowCount() {
-        int size;
-        if (accountList == null) {
-            size = 0;
+        if (bankAccountList == null) {
+            return 0;
         }
-        else {
-            size = accountList.size();
-        }
-        return size;
+        return bankAccountList.size();
     }
 
     @Override
@@ -36,19 +34,19 @@ public class AccountTableModel extends AbstractTableModel {
     public Object getValueAt(int row, int col) {
         Object temp = null;
         if (col == 0) {
-            temp = accountList.get(row).getAccountNo();
+            temp = bankAccountList.get(row).getAccountNo();
         }
         else if (col == 1) {
-            temp = accountList.get(row).getName();
+            temp = bankAccountList.get(row).getCustomerId();
         }
         else if (col == 2) {
-            temp = accountList.get(row).getType();
+            temp = bankAccountList.get(row).getAccountType();
         }
         else if (col == 3) {
-            temp = accountList.get(row).getCreationDate();
+            temp = bankAccountList.get(row).getCreationDate();
         }
         else if (col == 4) {
-            temp = accountList.get(row).getAmount();
+            temp = bankAccountList.get(row).getBalance();
         }
         return temp;
     }

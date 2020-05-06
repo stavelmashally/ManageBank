@@ -3,30 +3,18 @@ package application.view;
 import application.controllers.CreateAccountController;
 import application.util.Constants;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JTextField;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import javax.swing.SwingConstants;
-import javax.swing.JRadioButton;
-import javax.swing.DebugGraphics;
 
 public class CreateAccountView extends JPanel implements View, ActionListener {
 
 	CreateAccountController controller;
 
 	public CreateAccountView() {
-		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		setLayout(null);
-		setBackground(Color.WHITE);
 		initComponents();
 		setListeners();
 		controller = new CreateAccountController(this);
@@ -35,6 +23,12 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 
     @Override
     public void initComponents() {
+
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		setLayout(null);
+		setBackground(Color.WHITE);
+
 		lblAccountDetails = new JLabel(Constants.ACCOUNT_DETAILS_LABEL);
 		lblAccountDetails.setFont(new Font(Constants.APP_FONT, Font.PLAIN, 24));
 		lblAccountDetails.setBounds(70, 40, 214, 38);
@@ -138,17 +132,23 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		rdbtnOverdraft.setActionCommand("Savings");
     }
 
+
+	public void displayMessage(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
+	}
+
+
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(event.getActionCommand().equals(Constants.CREATE_BUTTON)){
+			String id = tfId.getText();
 			String fname = tfFname.getText();
 			String lname = tfLname.getText();
 			String email = tfEmail.getText();
 			String phone = tfPhone.getText();
 			String address = tfAddress.getText();
 			String type = rdbtnGroup.getSelection().getActionCommand();
-			Account account = new Account(123, fname, "10/10/2010", type, 6700);
-			System.out.println(fname + " " + type + " " + email);
+			controller.createAccount(id, fname, lname, email, phone, address, type);
 		}
 		if(event.getActionCommand().equals(Constants.CLEAR_BUTTON)){
 			tfFname.setText(Constants.FNAME_LABEL);

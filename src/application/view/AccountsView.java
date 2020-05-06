@@ -1,5 +1,7 @@
 package application.view;
 
+import application.controllers.AccountsController;
+import application.model.BankAccount;
 import application.util.Constants;
 
 import javax.swing.*;
@@ -17,23 +19,21 @@ import javax.swing.border.MatteBorder;
 
 public class AccountsView extends JPanel implements View, ActionListener {
 
-    private JTextField tfSearch;
-    private JButton btnSearch;
-    private JLabel lblSearchIcon;
-    private JScrollPane tablePane;
-    private JTable table;
-    private AccountTableModel tableModel;
+    AccountsController controller;
 
     public AccountsView() {
-        setBackground(Color.WHITE);
-        setLayout(null);
         initComponents();
         setListeners();
-        showAccounts();
+        controller = new AccountsController(this);
+        controller.getBankAccounts();
     }
 
     @Override
     public void initComponents() {
+
+        setBackground(Color.WHITE);
+        setLayout(null);
+
         // Search bar
         tfSearch = new JTextField();
         tfSearch.setBounds(68, 44, 361, 25);
@@ -67,18 +67,19 @@ public class AccountsView extends JPanel implements View, ActionListener {
         add(tablePane);
     }
 
-    private void showAccounts(){
-        List<Account> accounts = new ArrayList<>();
-        accounts.add(new Account(1234, "David", "10/10/2010","Normal", 6700));
-        accounts.add(new Account(1235, "Moshe", "11/11/2011","Overdraft", -700));
-        accounts.add(new Account(1236, "Yossi", "20/10/2019","Business", 15000));
-        tableModel.setList(accounts);
+    public void showAccounts(List<BankAccount> bankAccounts){
+        tableModel.setList(bankAccounts);
     }
 
     @Override
     public void setListeners() {
         btnSearch.addActionListener(this);
         btnSearch.setActionCommand(Constants.SEARCH_BUTTON);
+    }
+
+
+    public void displayMessage(String msg) {
+        JOptionPane.showMessageDialog(this, msg);
     }
 
     @Override
@@ -88,4 +89,11 @@ public class AccountsView extends JPanel implements View, ActionListener {
             tfSearch.setText("");
         }
     }
+
+    private JTextField tfSearch;
+    private JButton btnSearch;
+    private JLabel lblSearchIcon;
+    private JScrollPane tablePane;
+    private JTable table;
+    private AccountTableModel tableModel;
 }
