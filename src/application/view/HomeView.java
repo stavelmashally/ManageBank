@@ -22,8 +22,10 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
     private JPanel cards;
     private MenuItem accountsItem;
     private MenuItem createAccountItem;
-    private MenuItem transactionItem;
-    private MenuItem loansItem;
+    private MenuItem withdrawItem;
+    private MenuItem depositItem;
+    
+    
     private JLabel lblLogo;
     private JLabel lblManagebank;
 
@@ -83,8 +85,8 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
         btnExit.setActionCommand(Constants.EXIT_LABEL);
         accountsItem.addMouseListener(this);
         createAccountItem.addMouseListener(this);
-        transactionItem.addMouseListener(this);
-        loansItem.addMouseListener(this);
+        withdrawItem.addMouseListener(this);
+        depositItem.addMouseListener(this);
     }
 
 
@@ -117,12 +119,15 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
         // Create menu items
         accountsItem = new MenuItem(Constants.ACCOUNTS, Constants.ACCOUNTS_ICON, 100);
         createAccountItem = new MenuItem(Constants.CREATE_ACCOUNT, Constants.CREATE_ACCOUNT_ICON, 170);
-        transactionItem = new MenuItem(Constants.TRANSACTION, Constants.TRANSACTION_ICON, 240);
-        loansItem = new MenuItem(Constants.LOANS, Constants.LOANS_ICON, 310);
+        withdrawItem = new MenuItem(Constants.WITHDRAW, Constants.WITHDRAW_ICON, 240);
+        depositItem = new MenuItem(Constants.DEPOSIT, Constants.DEPOSIT_ICON, 310);
         menuIPanel.add(accountsItem);
         menuIPanel.add(createAccountItem);
-        menuIPanel.add(transactionItem);
-        menuIPanel.add(loansItem);
+        menuIPanel.add(withdrawItem);
+        menuIPanel.add(depositItem);
+        
+
+      
     }
 
     private void createScreens() {
@@ -133,8 +138,8 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
         // Adding the screens to the card view
         cards.add(new AccountsView(), Constants.ACCOUNTS);
         cards.add(new CreateAccountView(), Constants.CREATE_ACCOUNT);
-        cards.add(new TransactionView(), Constants.TRANSACTION);
-        cards.add(new LoansView(), Constants.LOANS);
+        cards.add(new WithdrawView(), Constants.WITHDRAW);
+        cards.add(new DepositView(), Constants.DEPOSIT);
         contentPane.add(cards, BorderLayout.CENTER);
     }
 
@@ -164,11 +169,11 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
             case Constants.CREATE_ACCOUNT:
                 changeScreen(Constants.CREATE_ACCOUNT, Constants.CREATE_ACCOUNT_TITLE);
                 break;
-            case Constants.TRANSACTION:
-                changeScreen(Constants.TRANSACTION, Constants.TRANSACTION_TITLE);
+            case Constants.WITHDRAW:
+                changeScreen(Constants.WITHDRAW, Constants.WITHDRAW_TITLE);
                 break;
-            case Constants.LOANS:
-                changeScreen(Constants.LOANS, Constants.LOANS_TITLE);
+            case Constants.DEPOSIT:
+                changeScreen(Constants.DEPOSIT, Constants.DEPOSIT_TITLE);
                 break;
         }
     }

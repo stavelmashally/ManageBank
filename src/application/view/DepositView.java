@@ -2,6 +2,7 @@ package application.view;
 
 import application.controllers.DepositController;
 
+
 import javax.swing.*;
 
 public class DepositView extends JPanel implements View{

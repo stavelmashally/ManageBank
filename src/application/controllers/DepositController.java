@@ -10,7 +10,7 @@ public class DepositController {
     BankAccountDao bankAccountDao;
 
     public DepositController(DepositView depositView){
-        this.view = new DepositView();
+        this.view = depositView;
         bankAccountDao = new BankAccountDao();
     }
 
