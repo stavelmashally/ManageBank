@@ -1,18 +1,20 @@
 package application;
 
+import application.model.DatabaseManager;
 import application.view.LoginView;
 
+import javax.swing.*;
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class App {
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                LoginView frame = new LoginView();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        SwingUtilities.invokeLater(() -> {
+            LoginView frame = new LoginView();
+            frame.setVisible(true);
         });
     }
 }

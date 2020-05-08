@@ -3,19 +3,14 @@ package application.view;
 import application.controllers.AccountsController;
 import application.model.BankAccount;
 import application.util.Constants;
+import application.view.components.AccountTableModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.MatteBorder;
 
 public class AccountsView extends JPanel implements View, ActionListener {
 
@@ -25,7 +20,7 @@ public class AccountsView extends JPanel implements View, ActionListener {
         initComponents();
         setListeners();
         controller = new AccountsController(this);
-        controller.getBankAccounts();
+        showAccounts();
     }
 
     @Override
@@ -67,8 +62,8 @@ public class AccountsView extends JPanel implements View, ActionListener {
         add(tablePane);
     }
 
-    public void showAccounts(List<BankAccount> bankAccounts){
-        tableModel.setList(bankAccounts);
+    public void showAccounts(){
+        tableModel.setList(controller.getBankAccounts());
     }
 
     @Override

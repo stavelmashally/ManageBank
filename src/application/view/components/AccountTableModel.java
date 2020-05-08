@@ -1,4 +1,4 @@
-package application.view;
+package application.view.components;
 
 import application.model.BankAccount;
 

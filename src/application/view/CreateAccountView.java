@@ -22,20 +22,9 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		controller = new CreateAccountController(this);
 	}
 
-	public MouseAdapter clearText(JTextField j){
-		return new MouseAdapter(){
-	        @Override
-	        public void mouseClicked(MouseEvent e){
-	        	if(j.getText().equals(j.getToolTipText()))
-	        		j.setText("");
-	        	}
-	    };
-	}
-	
-    
+
     @Override
     public void initComponents() {
-
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		setLayout(null);
@@ -45,68 +34,23 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		lblAccountDetails.setFont(new Font(Constants.APP_FONT, Font.PLAIN, 24));
 		lblAccountDetails.setBounds(70, 40, 214, 38);
 		add(lblAccountDetails);
-		 
-		
-		
 
-		tfFname = new JTextField(Constants.FNAME_LABEL);
-		tfFname.setToolTipText(Constants.FNAME_LABEL);
-		tfFname.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
-		tfFname.addMouseListener(clearText(tfFname));
-		tfFname.setForeground(Color.GRAY);
-		tfFname.setColumns(10);
-		tfFname.setBounds(70, 100, 260, 30);
-		add(tfFname);
-
-		tfLname = new JTextField(Constants.LNAME_LABEL);
-		tfLname.setToolTipText(Constants.LNAME_LABEL);
-		tfLname.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
-		tfLname.addMouseListener(clearText(tfLname));
-		tfLname.setForeground(Color.GRAY);	
-		tfLname.setColumns(10);
-		tfLname.setBounds(70, 150, 260, 30);
-		add(tfLname);
-
-		tfId = new JTextField(Constants.ID_LABEL);
-		tfId.setToolTipText(Constants.ID_LABEL);
-		tfId.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
-		tfId.addMouseListener(clearText(tfId));
-		tfId.setForeground(Color.GRAY);
-		tfId.setColumns(10);
-		tfId.setBounds(70, 200, 260, 30);
+		tfFname = createTextField(Constants.FNAME_LABEL, 100);
+		tfLname = createTextField(Constants.LNAME_LABEL, 150);
+		tfId = createTextField(Constants.ID_LABEL, 200);
+		tfEmail = createTextField(Constants.EMAIL_LABEL, 250);
+		tfPhone = createTextField(Constants.PHONE_LABEL, 300);
+		tfAddress = createTextField(Constants.ADDRESS_LABEL, 350);
 		add(tfId);
-
-		tfEmail = new JTextField(Constants.EMAIL_LABEL);
-		tfEmail.setToolTipText(Constants.EMAIL_LABEL);
-		tfEmail.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
-		tfEmail.addMouseListener(clearText(tfEmail));
-		tfEmail.setForeground(Color.GRAY);
-		tfEmail.setColumns(10);
-		tfEmail.setBounds(70, 250, 260, 30);
 		add(tfEmail);
-
-		tfPhone = new JTextField(Constants.PHONE_LABEL);
-		tfPhone.setToolTipText(Constants.PHONE_LABEL);
-		tfPhone.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
-		tfPhone.addMouseListener(clearText(tfPhone));
-		tfPhone.setForeground(Color.GRAY);
-		tfPhone.setColumns(10);
-		tfPhone.setBounds(70, 300, 260, 30);
+		add(tfFname);
+		add(tfLname);
 		add(tfPhone);
-
-		tfAddress = new JTextField(Constants.ADDRESS_LABEL);
-		tfAddress.setToolTipText(Constants.ADDRESS_LABEL);
-		tfAddress.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
-		tfAddress.addMouseListener(clearText(tfAddress));
-		tfAddress.setForeground(Color.GRAY);
-		tfAddress.setColumns(10);
-		tfAddress.setBounds(70, 350, 260, 30);
 		add(tfAddress);
 
 		// Account type Radio Buttons
 		rdbtnGroup = new ButtonGroup();
-		
-		
+
 		rdbtnNormal = new JRadioButton("Normal");
 		rdbtnNormal.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		rdbtnNormal.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -144,6 +88,16 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		add(btnClear);
     }
 
+    private JTextField createTextField(String text, int pos){
+		JTextField textField = new JTextField(text);
+		textField.setToolTipText(text);
+		textField.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
+		textField.setForeground(Color.GRAY);
+		textField.setColumns(10);
+		textField.setBounds(70, pos, 260, 30);
+		return textField;
+	}
+
     @Override
     public void setListeners() {
 		btnCreate.addActionListener(this);
@@ -153,8 +107,24 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		rdbtnBusiness.setActionCommand("Business");
 		rdbtnNormal.setActionCommand("Normal");
 		rdbtnOverdraft.setActionCommand("Savings");
+		tfEmail.addMouseListener(clearText(tfEmail));
+		tfPhone.addMouseListener(clearText(tfPhone));
+		tfAddress.addMouseListener(clearText(tfAddress));
+		tfFname.addMouseListener(clearText(tfFname));
+		tfLname.addMouseListener(clearText(tfLname));
+		tfId.addMouseListener(clearText(tfId));
+
     }
 
+	public MouseAdapter clearText(JTextField textField){
+		return new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e){
+				if(textField.getText().equals(textField.getToolTipText()))
+					textField.setText("");
+			}
+		};
+	}
 
 	public void displayMessage(String msg) {
 		JOptionPane.showMessageDialog(this, msg);

@@ -2,6 +2,7 @@ package application.view;
 
 import application.controllers.LoginController;
 import application.util.Constants;
+import application.view.components.ExitButton;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -22,7 +23,6 @@ public class LoginView extends JFrame implements View, ActionListener {
 
     @Override
     public void initComponents() {
-
         setUndecorated(true);
         setSize(600, 400);
         setLocationRelativeTo(null);
@@ -134,7 +134,6 @@ public class LoginView extends JFrame implements View, ActionListener {
             controller.login(tfUsername.getText(), String.valueOf(passwordField.getPassword()));
         }
     }
-
 
     private JPanel mainPanel;
     private JPanel sidePanel;

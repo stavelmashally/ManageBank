@@ -1,7 +1,10 @@
 package application.controllers;
 
+import application.model.BankAccount;
 import application.model.dao.BankAccountDao;
 import application.view.AccountsView;
+
+import java.util.List;
 
 public class AccountsController {
 
@@ -13,7 +16,7 @@ public class AccountsController {
         bankAccountDao = new BankAccountDao();
     }
 
-    public void getBankAccounts(){
-        view.showAccounts(bankAccountDao.findAll());
+    public List<BankAccount> getBankAccounts(){
+        return bankAccountDao.findAll();
     }
 }

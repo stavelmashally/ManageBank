@@ -7,6 +7,11 @@ import java.util.List;
 public class BankAccountDao implements Dao<BankAccount> {
 
     @Override
+    public BankAccount findByEmail(String email) {
+        return null;
+    }
+
+    @Override
     public BankAccount findById(int id) {
         return null;
     }

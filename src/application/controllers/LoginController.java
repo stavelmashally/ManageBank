@@ -14,23 +14,28 @@ public class LoginController{
         employeeDao = new EmployeeDao();
     }
 
-    public void login(String id, String password){
+    public void login(String email, String password){
 
-        if (id.isEmpty() || password.isEmpty()){
+        if (email.isEmpty() || password.isEmpty()){
             return;
         }
 
-        if (password.length() < 6 || id.length() < 3){
-            view.displayMessage("Wrong Id or Password!");
+        if (password.length() < 6 || email.length() < 7){
+            view.displayMessage("Wrong Email or Password!");
             return;
         }
 
-        Employee employee = employeeDao.findById(Integer.parseInt(id));
+        Employee employee = employeeDao.findByEmail(email);
 
-        if(employee != null && employee.getPassword().equals(password)){
+        if(employee == null){
+            view.displayMessage("Email does not exists!");
+            return;
+        }
+
+        if(employee.getPassword().equals(password)){
             view.showHomeScreen();
         } else {
-            view.displayMessage("Failed to Login");
+            view.displayMessage("Wrong Email or Password!");
         }
 
     }

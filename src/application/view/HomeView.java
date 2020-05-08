@@ -1,6 +1,8 @@
 package application.view;
 
 import application.util.Constants;
+import application.view.components.ExitButton;
+import application.view.components.MenuItem;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -20,10 +22,10 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
     private JLabel lblPath;
     private JLabel lblHome;
     private JPanel cards;
-    private MenuItem accountsItem;
-    private MenuItem createAccountItem;
-    private MenuItem withdrawItem;
-    private MenuItem depositItem;
+    private application.view.components.MenuItem accountsItem;
+    private application.view.components.MenuItem createAccountItem;
+    private application.view.components.MenuItem withdrawItem;
+    private application.view.components.MenuItem depositItem;
     
     
     private JLabel lblLogo;
@@ -117,10 +119,10 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
         menuIPanel.add(lblManagebank);
 
         // Create menu items
-        accountsItem = new MenuItem(Constants.ACCOUNTS, Constants.ACCOUNTS_ICON, 100);
-        createAccountItem = new MenuItem(Constants.CREATE_ACCOUNT, Constants.CREATE_ACCOUNT_ICON, 170);
-        withdrawItem = new MenuItem(Constants.WITHDRAW, Constants.WITHDRAW_ICON, 240);
-        depositItem = new MenuItem(Constants.DEPOSIT, Constants.DEPOSIT_ICON, 310);
+        accountsItem = new application.view.components.MenuItem(Constants.ACCOUNTS, Constants.ACCOUNTS_ICON, 100);
+        createAccountItem = new application.view.components.MenuItem(Constants.CREATE_ACCOUNT, Constants.CREATE_ACCOUNT_ICON, 170);
+        withdrawItem = new application.view.components.MenuItem(Constants.WITHDRAW, Constants.WITHDRAW_ICON, 240);
+        depositItem = new application.view.components.MenuItem(Constants.DEPOSIT, Constants.DEPOSIT_ICON, 310);
         menuIPanel.add(accountsItem);
         menuIPanel.add(createAccountItem);
         menuIPanel.add(withdrawItem);
@@ -180,7 +182,7 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
 
     @Override
     public void mouseEntered(MouseEvent event) {
-        if (event.getComponent() instanceof MenuItem) {
+        if (event.getComponent() instanceof application.view.components.MenuItem) {
             JPanel parent = (JPanel) event.getSource();
             parent.setBackground(new Color(144, 202, 249));
             parent.revalidate();

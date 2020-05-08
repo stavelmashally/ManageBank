@@ -7,6 +7,11 @@ import java.util.List;
 public class CustomerDao implements Dao<Customer>{
 
     @Override
+    public Customer findByEmail(String email) {
+        return null;
+    }
+
+    @Override
     public Customer findById(int id) {
         return null;
     }
