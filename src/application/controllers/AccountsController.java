@@ -6,9 +6,8 @@ import application.view.AccountsView;
 
 import java.util.List;
 
-public class AccountsController {
+public class AccountsController extends Controller{
 
-    AccountsView view;
     BankAccountDao bankAccountDao;
 
     public AccountsController(AccountsView accountsView){

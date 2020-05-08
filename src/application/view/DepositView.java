@@ -1,18 +1,18 @@
 package application.view;
 
-import application.controllers.DepositController;
 
+import application.controllers.TransactionController;
 
 import javax.swing.*;
 
 public class DepositView extends JPanel implements View{
 
-    DepositController controller;
+    TransactionController controller;
 
     public DepositView(){
         initComponents();
         setListeners();
-        controller = new DepositController(this);
+        controller = new TransactionController(this);
     }
 
     @Override

@@ -3,39 +3,40 @@ package application.controllers;
 import application.model.dao.EmployeeDao;
 import application.model.Employee;
 import application.view.LoginView;
+import application.view.View;
 
-public class LoginController{
+public class LoginController extends Controller{
 
-    LoginView view;
     EmployeeDao employeeDao;
 
-    public LoginController(LoginView loginView){
-        this.view = loginView;
+    public LoginController(View view){
+        this.view = view;
         employeeDao = new EmployeeDao();
     }
 
-    public void login(String email, String password){
+    public boolean login(String email, String password){
 
         if (email.isEmpty() || password.isEmpty()){
-            return;
+            return false;
         }
 
         if (password.length() < 6 || email.length() < 7){
             view.displayMessage("Wrong Email or Password!");
-            return;
+            return false;
         }
 
         Employee employee = employeeDao.findByEmail(email);
 
         if(employee == null){
             view.displayMessage("Email does not exists!");
-            return;
+            return false;
         }
 
         if(employee.getPassword().equals(password)){
-            view.showHomeScreen();
+            return true;
         } else {
             view.displayMessage("Wrong Email or Password!");
+            return false;
         }
 
     }

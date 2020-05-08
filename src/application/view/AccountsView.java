@@ -72,7 +72,7 @@ public class AccountsView extends JPanel implements View, ActionListener {
         btnSearch.setActionCommand(Constants.SEARCH_BUTTON);
     }
 
-
+    @Override
     public void displayMessage(String msg) {
         JOptionPane.showMessageDialog(this, msg);
     }

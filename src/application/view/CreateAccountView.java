@@ -126,6 +126,7 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		};
 	}
 
+	@Override
 	public void displayMessage(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
 	}

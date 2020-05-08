@@ -2,6 +2,7 @@ package application.model;
 import java.util.Date;
 
 public class BankAccount {
+
     private int  accountNo;
     private int customerId;
     private double balance;
@@ -15,7 +16,6 @@ public class BankAccount {
     }
 
     public BankAccount(){
-
     }
 
     public String getAccountType() {

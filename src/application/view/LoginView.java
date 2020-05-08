@@ -115,12 +115,12 @@ public class LoginView extends JFrame implements View, ActionListener {
         btnExit.setActionCommand(Constants.EXIT_LABEL);
     }
 
-
+    @Override
     public void displayMessage(String msg) {
         JOptionPane.showMessageDialog(this, msg);
     }
 
-    public void showHomeScreen(){
+    private void showHomeScreen(){
         dispose();
         new HomeView().setVisible(true);
     }
@@ -131,7 +131,9 @@ public class LoginView extends JFrame implements View, ActionListener {
             System.exit(0);
         }
         if (event.getActionCommand().equals(Constants.LOGIN_LABEL)) {
-            controller.login(tfUsername.getText(), String.valueOf(passwordField.getPassword()));
+            if(controller.login(tfUsername.getText(), String.valueOf(passwordField.getPassword()))){
+                showHomeScreen();
+            }
         }
     }
 

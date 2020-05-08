@@ -5,17 +5,17 @@ import application.model.Customer;
 import application.model.dao.BankAccountDao;
 import application.model.dao.CustomerDao;
 import application.view.CreateAccountView;
+import application.view.View;
 
 import java.util.Calendar;
 import java.util.Date;
 
-public class CreateAccountController {
+public class CreateAccountController extends Controller{
 
-    CreateAccountView view;
     BankAccountDao bankAccountDao;
     CustomerDao customerDao;
 
-    public CreateAccountController(CreateAccountView view){
+    public CreateAccountController(View view){
         this.view = view;
         bankAccountDao = new BankAccountDao();
         customerDao = new CustomerDao();

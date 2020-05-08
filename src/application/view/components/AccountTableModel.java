@@ -7,7 +7,7 @@ import java.util.List;
 
 public class AccountTableModel extends AbstractTableModel {
 
-    private final String[] columnNames = {"Account No","Customer Id","Type", "Creation Date", "Balance"};
+    private final String[] columnNames = {"Account No","Customer Id","Type", "Balance"};
     private List<BankAccount> bankAccountList;
 
     public AccountTableModel(){
@@ -43,9 +43,6 @@ public class AccountTableModel extends AbstractTableModel {
             temp = bankAccountList.get(row).getAccountType();
         }
         else if (col == 3) {
-            temp = bankAccountList.get(row).getCreationDate();
-        }
-        else if (col == 4) {
             temp = bankAccountList.get(row).getBalance();
         }
         return temp;

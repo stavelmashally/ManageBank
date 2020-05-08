@@ -13,9 +13,7 @@ public class Employee extends User {
     }
 
     public Employee() {
-
     }
-
 
     public String getPassword() {
         return password;

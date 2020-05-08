@@ -91,7 +91,7 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
         depositItem.addMouseListener(this);
     }
 
-
+    @Override
     public void displayMessage(String msg) {
 
     }

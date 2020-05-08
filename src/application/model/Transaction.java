@@ -21,6 +21,12 @@ public class Transaction {
         this.toAccount = toAccount;
     }
 
+    public Transaction(double amount, String transactionType, int fromAccount, int toAccount) {
+        this.amount = amount;
+        this.transactionType = transactionType;
+        this.fromAccount = fromAccount;
+        this.toAccount = toAccount;
+    }
     public Transaction(){
 
     }

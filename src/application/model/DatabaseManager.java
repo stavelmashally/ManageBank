@@ -41,25 +41,24 @@ public class DatabaseManager {
         }
     }
 
-//    public void initDatabase(){
-//        try {
-//            Statement statement = getConnection().createStatement();
-//
-//            statement.execute("CREATE TABLE IF NOT EXISTS employees " +
-//                    "(ID INT PRIMARY KEY     NOT NULL," +
-//                    " fname          TEXT    NOT NULL, " +
-//                    " lname          TEXT    NOT NULL, " +
-//                    " email          TEXT    NOT NULL, " +
-//                    " password       TEXT    NOT NULL, " +
-//                    " role           TEXT    NOT NULL, " +
-//                    " privileges     TEXT)");
-//
-//            statement.execute("INSERT INTO employees (ID,fname,lname,email,password,role,privileges) " +
-//                    "VALUES (1234, 'stav', 'elmashally', 'stav@gmail.com', '123456', 'manager', 'A' );");
-//            statement.close();
-//            getConnection().close();
-//        } catch (SQLException e){
-//            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//        }
-//    }
+    public boolean executeInsert(String sql){
+        try {
+            PreparedStatement stmtInsert = getConnection().prepareStatement(sql);
+            stmtInsert.executeUpdate();
+            return true;
+        } catch (SQLException e){
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return false;
+        }
+    }
+
+    public boolean executeUpdate(String sql){
+        try {
+            getConnection().createStatement().executeUpdate(sql);
+            return true;
+        } catch (SQLException e){
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            return false;
+        }
+    }
 }

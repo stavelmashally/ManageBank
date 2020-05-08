@@ -1,6 +1,7 @@
 package application.model;
 
 public class User {
+
     private int id;
     private String FirstName;
     private String LastName;
@@ -14,9 +15,7 @@ public class User {
     }
 
     public User() {
-
     }
-
 
     public int getId() {
         return id;

@@ -1,19 +1,18 @@
 package application.view;
 
-import application.controllers.WithdrawController;
-
-import java.awt.Font;
+import application.controllers.TransactionController;
+import application.model.Transaction;
 
 import javax.swing.*;
 
 public class WithdrawView extends JPanel implements View{
 
-    WithdrawController controller;
+    TransactionController controller;
 
     public WithdrawView(){
         initComponents();
         setListeners();
-        controller = new WithdrawController(this);
+        controller = new TransactionController(this);
     }
 
     @Override
