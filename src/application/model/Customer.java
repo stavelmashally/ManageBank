@@ -7,11 +7,10 @@ public class Customer extends User {
     private Date birthDate;
     private String phone;
 
-    public Customer(int id, String fName, String lName, String email, String phone, String address, String city, Date birthDate) {
+    public Customer(int id, String fName, String lName, String email, String phone, String address, String city) {
         super(id, fName, lName, email);
         this.address = address;
         this.city = city;
-        this.birthDate = birthDate;
         this.phone = phone;
     }
 

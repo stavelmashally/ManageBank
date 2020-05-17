@@ -9,9 +9,8 @@ public class BankAccount {
     private Date creationDate;
     private String accountType;
 
-    public BankAccount(int customerId, Date creationDate, String accountType) {
+    public BankAccount(int customerId, String accountType) {
         this.customerId = customerId;
-        this.creationDate = creationDate;
         this.accountType = accountType;
     }
 

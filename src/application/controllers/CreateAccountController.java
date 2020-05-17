@@ -21,18 +21,19 @@ public class CreateAccountController extends Controller{
         customerDao = new CustomerDao();
 
     }
-    public void createAccount(String id, String fname, String lname, String email, String phone, String address, String type){
+    public void createAccount(int id, String fname, String lname, String email, String phone,
+                              String address, String city, String type){
 
-        if(fname.isEmpty()){
+        if(fname.isEmpty() || lname.isEmpty() || email.isEmpty() || phone.isEmpty() ||
+                address.isEmpty() || city.isEmpty()){
             view.displayMessage("Wrong details!");
             return;
         }
 
-        Customer customer = new Customer();
+        Customer customer = new Customer(id, fname, lname, email, phone, address, city);
         customerDao.save(customer);
 
-        Date today = Calendar.getInstance().getTime();
-        BankAccount bankAccount = new BankAccount(Integer.parseInt(id), today, type);
+        BankAccount bankAccount = new BankAccount(id, type);
         bankAccountDao.save(bankAccount);
 
         view.displayMessage("Account Created Successfully!");

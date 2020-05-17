@@ -14,7 +14,7 @@ import javax.swing.border.LineBorder;
 
 public class CreateAccountView extends JPanel implements View, ActionListener {
 
-	CreateAccountController controller;
+	private CreateAccountController controller;
 
 	public CreateAccountView() {
 		initComponents();
@@ -41,12 +41,14 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		tfEmail = createTextField(Constants.EMAIL_LABEL, 250);
 		tfPhone = createTextField(Constants.PHONE_LABEL, 300);
 		tfAddress = createTextField(Constants.ADDRESS_LABEL, 350);
+		tfCity = createTextField(Constants.CITY_LABEL, 400);
 		add(tfId);
 		add(tfEmail);
 		add(tfFname);
 		add(tfLname);
 		add(tfPhone);
 		add(tfAddress);
+		add(tfCity);
 
 		// Account type Radio Buttons
 		rdbtnGroup = new ButtonGroup();
@@ -56,18 +58,18 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		rdbtnNormal.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		rdbtnNormal.setSelected(true);
 		rdbtnNormal.setBackground(Color.WHITE);
-		rdbtnNormal.setBounds(70, 400, 75, 23);
+		rdbtnNormal.setBounds(70, 450, 75, 23);
 		add(rdbtnNormal);
 		
-		rdbtnOverdraft = new JRadioButton("Overdraft");
+		rdbtnOverdraft = new JRadioButton("Savings");
 		rdbtnOverdraft.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		rdbtnOverdraft.setBackground(Color.WHITE);
-		rdbtnOverdraft.setBounds(145, 400, 95, 23);
+		rdbtnOverdraft.setBounds(145, 450, 95, 23);
 		add(rdbtnOverdraft);
 		
 		rdbtnBusiness = new JRadioButton("Business");
 		rdbtnBusiness.setBackground(Color.WHITE);
-		rdbtnBusiness.setBounds(240, 400, 95, 23);
+		rdbtnBusiness.setBounds(240, 450, 95, 23);
 		add(rdbtnBusiness);
 		
 		rdbtnGroup.add(rdbtnNormal);
@@ -78,13 +80,13 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		btnCreate.setBorder(null);
 		btnCreate.setForeground(Color.WHITE);
 		btnCreate.setBackground(new Color(33, 150, 243));
-		btnCreate.setBounds(70, 450, 120, 38);
+		btnCreate.setBounds(70, 500, 120, 38);
 		add(btnCreate);
 
 		btnClear = new JButton(Constants.CLEAR_BUTTON);
 		btnClear.setForeground(Color.WHITE);
 		btnClear.setBackground(new Color(33, 150, 243));
-		btnClear.setBounds(210, 450, 120, 38);
+		btnClear.setBounds(210, 500, 120, 38);
 		add(btnClear);
     }
 
@@ -113,7 +115,7 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		tfFname.addMouseListener(clearText(tfFname));
 		tfLname.addMouseListener(clearText(tfLname));
 		tfId.addMouseListener(clearText(tfId));
-
+		tfCity.addMouseListener(clearText(tfCity));
     }
 
 	public MouseAdapter clearText(JTextField textField){
@@ -135,14 +137,15 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(event.getActionCommand().equals(Constants.CREATE_BUTTON)){
-			String id = tfId.getText();
+			int id = Integer.parseInt(tfId.getText());
 			String fname = tfFname.getText();
 			String lname = tfLname.getText();
 			String email = tfEmail.getText();
 			String phone = tfPhone.getText();
 			String address = tfAddress.getText();
+			String city = tfCity.getText();
 			String type = rdbtnGroup.getSelection().getActionCommand();
-			controller.createAccount(id, fname, lname, email, phone, address, type);
+			controller.createAccount(id, fname, lname, email, phone, address, city, type);
 		}
 		if(event.getActionCommand().equals(Constants.CLEAR_BUTTON)){
 			tfFname.setText(Constants.FNAME_LABEL);
@@ -151,6 +154,7 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 			tfEmail.setText(Constants.EMAIL_LABEL);
 			tfPhone.setText(Constants.PHONE_LABEL);
 			tfAddress.setText(Constants.ADDRESS_LABEL);
+			tfCity.setText(Constants.CITY_LABEL);
 		}
 	}
 
@@ -160,6 +164,7 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 	private JTextField tfEmail;
 	private JTextField tfPhone;
 	private JTextField tfAddress;
+	private JTextField tfCity;
 	private JButton btnCreate;
 	private JButton btnClear;
 	private JLabel lblAccountDetails;

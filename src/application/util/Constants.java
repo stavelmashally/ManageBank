@@ -20,6 +20,7 @@ public class Constants {
     public static final String EMAIL_LABEL = "Email";
     public static final String CREATE_BUTTON = "Create";
     public static final String CLEAR_BUTTON = "Clear";
+    public static final String CITY_LABEL = "City";
 
     public static final String ACCOUNTS = "Accounts";
     public static final String CREATE_ACCOUNT = "Create Account";
