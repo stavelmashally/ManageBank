@@ -4,6 +4,7 @@ import application.model.BankAccount;
 import application.model.Transaction;
 import application.model.dao.BankAccountDao;
 import application.model.dao.TransactionDao;
+import application.util.Constants;
 import application.view.View;
 
 public class TransactionController extends Controller{
@@ -17,25 +18,30 @@ public class TransactionController extends Controller{
         bankAccountDao = new BankAccountDao();
     }
 
-    public void performDeposit(int fromAccount, int toAccount, double amount){
+    public void performDeposit(int fromAccount, int toAccount, double amount, String type){
 
         if (amount <= 0) {
             view.displayMessage("Wrong amount!");
             return;
         }
 
-        BankAccount bankAccount = bankAccountDao.findById(toAccount);
+        if (type.equals(Constants.TRANSFER)){
+            performWithdraw(fromAccount, amount);
 
-        if(bankAccount != null){
-            double newBalance = bankAccount.getBalance() + amount;
-            bankAccount.setBalance(newBalance);
-            bankAccountDao.update(bankAccount);
+        }
+
+        BankAccount toBankAccount = bankAccountDao.findById(toAccount);
+
+        if(toBankAccount != null){
+            double newBalance = toBankAccount.getBalance() + amount;
+            toBankAccount.setBalance(newBalance);
+            bankAccountDao.update(toBankAccount);
 
             // Store the transaction in DB
             Transaction transaction = new Transaction(amount, "deposit", fromAccount, toAccount);
             transactionDao.save(transaction);
         }
-
+        view.displayMessage("Deposit Successful!");
     }
 
     public void performWithdraw(int fromAccount, double amount){

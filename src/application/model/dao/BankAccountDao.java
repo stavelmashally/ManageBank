@@ -19,6 +19,7 @@ public class BankAccountDao implements Dao<BankAccount> {
     @Override
     public BankAccount findById(int id) {
         String query = "SELECT * FROM accounts WHERE accountNo=" + id;
+        System.out.println(query);
         return parse(DatabaseManager.getInstance().executeQuery(query));
     }
 

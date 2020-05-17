@@ -2,75 +2,95 @@ package application.view;
 
 import application.controllers.TransactionController;
 import application.model.Transaction;
+import application.util.Constants;
 
 import javax.swing.*;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class WithdrawView extends JPanel implements View{
+public class WithdrawView extends JPanel implements View, ActionListener {
 
-    TransactionController controller;
-    private JTextField textField_2;
-    private JTextField textField;
+    private TransactionController controller;
 
     public WithdrawView(){
-    	setBackground(Color.WHITE);
+
         initComponents();
         setListeners();
         controller = new TransactionController(this);
-        setLayout(null);
-        
-        JLabel lblNewLabel = new JLabel("From Account");
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblNewLabel.setBounds(30, 88, 131, 30);
-        add(lblNewLabel);
-        
-        JLabel lblAmount = new JLabel("Amount");
-        lblAmount.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblAmount.setBounds(30, 141, 131, 28);
-        add(lblAmount);
-        
-        JButton button = new JButton("OK");
-        button.setForeground(Color.WHITE);
-        button.setBorder(null);
-        button.setBackground(new Color(33, 150, 243));
-        button.setActionCommand("Create");
-        button.setBounds(164, 218, 113, 38);
-        add(button);
-        
-        JButton button_1 = new JButton("Clear");
-        button_1.setForeground(Color.WHITE);
-        button_1.setBackground(new Color(33, 150, 243));
-        button_1.setActionCommand("Clear");
-        button_1.setBounds(289, 218, 113, 38);
-        add(button_1);
-        
-        textField_2 = new JTextField();
-        textField_2.setColumns(10);
-        textField_2.setBounds(161, 88, 244, 30);
-        add(textField_2);
-        
-        textField = new JTextField();
-        textField.setColumns(10);
-        textField.setBounds(161, 141, 244, 30);
-        add(textField);
+
     }
 
     @Override
     public void initComponents() {
-//    	   lblTitle = new JLabel("Withdeaw");
-//         lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 18));
-//         lblTitle.setBounds(146, 121, 169, 38);
-//         add(lblTitle);
+        setBackground(Color.WHITE);
+        setLayout(null);
 
+        lblFromAccount = new JLabel("From Account");
+        lblFromAccount.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lblFromAccount.setBounds(30, 88, 131, 30);
+        add(lblFromAccount);
+
+        lblAmount = new JLabel("Amount");
+        lblAmount.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lblAmount.setBounds(30, 141, 131, 28);
+        add(lblAmount);
+
+        btnOK = new JButton("OK");
+        btnOK.setForeground(Color.WHITE);
+        btnOK.setBorder(null);
+        btnOK.setBackground(new Color(33, 150, 243));
+        btnOK.setActionCommand("Create");
+        btnOK.setBounds(164, 218, 113, 38);
+        add(btnOK);
+
+        btnClear = new JButton("Clear");
+        btnClear.setForeground(Color.WHITE);
+        btnClear.setBackground(new Color(33, 150, 243));
+        btnClear.setActionCommand("Clear");
+        btnClear.setBounds(289, 218, 113, 38);
+        add(btnClear);
+
+        tfFromAccount = new JTextField();
+        tfFromAccount.setColumns(10);
+        tfFromAccount.setBounds(161, 88, 244, 30);
+        add(tfFromAccount);
+
+        tfAmount = new JTextField();
+        tfAmount.setColumns(10);
+        tfAmount.setBounds(161, 141, 244, 30);
+        add(tfAmount);
     }
 
     @Override
     public void setListeners() {
-
+        btnOK.addActionListener(this);
+        btnClear.addActionListener(this);
+        btnClear.setActionCommand(Constants.CLEAR_BUTTON);
+        btnOK.setActionCommand(Constants.OK_BUTTON);
     }
     public void displayMessage(String msg) {
         JOptionPane.showMessageDialog(this, msg);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        if(event.getActionCommand().equals(Constants.OK_BUTTON)){
+            int fromAccount = Integer.parseInt(tfFromAccount.getText());
+            double amount = Double.parseDouble(tfAmount.getText());
+            controller.performWithdraw(fromAccount, amount);
+        }
+        if(event.getActionCommand().equals(Constants.CLEAR_BUTTON)){
+            tfFromAccount.setText("");
+            tfAmount.setText("");
+        }
+    }
+
+    private JTextField tfFromAccount;
+    private JTextField tfAmount;
+    private JLabel lblFromAccount;
+    private JLabel lblAmount;
+    private JButton btnClear;
+    private JButton btnOK;
 }

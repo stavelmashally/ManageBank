@@ -2,6 +2,7 @@ package application.view;
 
 
 import application.controllers.TransactionController;
+import application.util.Constants;
 import javafx.scene.control.RadioButton;
 
 import javax.swing.*;
@@ -12,102 +13,131 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-public class DepositView extends JPanel implements View{
+public class DepositView extends JPanel implements View, ActionListener {
 
     TransactionController controller;
-    private JTextField from_acunt;
-    private JTextField textField;
-    private JTextField textField_1;
-    private ButtonGroup rdbtnGroup;
-    private JRadioButton rdbtnDeposit;
-    private JRadioButton rdbtnTransfer;
     
     public DepositView(){
-    	setBackground(Color.WHITE);
         initComponents();
         setListeners();
         controller = new TransactionController(this);
-        setLayout(null);
-        
-        from_acunt = new JTextField();
-        from_acunt.setBounds(159, 110, 244, 31);
-        add(from_acunt);
-        from_acunt.setColumns(10);
-        
-        textField = new JTextField();
-        textField.setBounds(159, 151, 244, 30);
-        add(textField);
-        textField.setColumns(10);
-        
-        JLabel lblNewLabel = new JLabel("from account");
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblNewLabel.setBounds(49, 108, 123, 30);
-        add(lblNewLabel);
-        
-        JLabel lblNewLabel_1 = new JLabel("to account");
-        lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblNewLabel_1.setBounds(53, 150, 119, 29);
-        add(lblNewLabel_1);
-        
-        JButton btnOk = new JButton("OK");
-        btnOk.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        btnOk.setForeground(Color.WHITE);
-        btnOk.setBorder(null);
-        btnOk.setBackground(new Color(33, 150, 243));
-        btnOk.setActionCommand("Create");
-        btnOk.setBounds(159, 264, 113, 38);
-        add(btnOk);
-        
-        JButton button_1 = new JButton("Clear");
-        button_1.setForeground(Color.WHITE);
-        button_1.setBackground(new Color(33, 150, 243));
-        button_1.setActionCommand("Clear");
-        button_1.setBounds(290, 264, 113, 38);
-        add(button_1);
-        
-        textField_1 = new JTextField();
-        textField_1.setBounds(159, 194, 134, 28);
-        add(textField_1);
-        textField_1.setColumns(10);
-        
-        JLabel lblNewLabel_2 = new JLabel("amount");
-        lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblNewLabel_2.setBounds(53, 191, 123, 30);
-        add(lblNewLabel_2);
-    
-        rdbtnGroup = new ButtonGroup();
-		
-		rdbtnTransfer = new JRadioButton("Transfer");
-		rdbtnTransfer.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		rdbtnTransfer.setBackground(Color.WHITE);
-		rdbtnTransfer.setBounds(159, 62, 106, 23);
-		add(rdbtnTransfer);
-		
-		rdbtnDeposit = new JRadioButton("Deposit");
-		rdbtnDeposit.setBackground(Color.WHITE);
-		rdbtnDeposit.setBounds(269, 62, 134, 23);
-		add(rdbtnDeposit);
-		
-		
-		rdbtnGroup.add(rdbtnTransfer);
-		rdbtnGroup.add(rdbtnDeposit);
-		
     }
 
     @Override
     public void initComponents() {
+        setLayout(null);
+        setBackground(Color.WHITE);
 
+        tfFromAccount = new JTextField();
+        tfFromAccount.setBounds(159, 110, 244, 31);
+        tfFromAccount.setColumns(10);
+        add(tfFromAccount);
+
+        tfToAccount = new JTextField();
+        tfToAccount.setBounds(159, 151, 244, 30);
+        tfToAccount.setColumns(10);
+        add(tfToAccount);
+
+        lblFromAccount = new JLabel("From Account");
+        lblFromAccount.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lblFromAccount.setBounds(49, 108, 123, 30);
+        add(lblFromAccount);
+
+        lblToAccount = new JLabel("to account");
+        lblToAccount.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lblToAccount.setBounds(53, 150, 119, 29);
+        add(lblToAccount);
+
+        btnOk = new JButton("OK");
+        btnOk.setForeground(Color.WHITE);
+        btnOk.setBorder(null);
+        btnOk.setBackground(new Color(33, 150, 243));
+        btnOk.setBounds(159, 264, 113, 38);
+        add(btnOk);
+
+        btnClear = new JButton("Clear");
+        btnClear.setForeground(Color.WHITE);
+        btnClear.setBackground(new Color(33, 150, 243));
+        btnClear.setActionCommand("btnClear");
+        btnClear.setBounds(290, 264, 113, 38);
+        add(btnClear);
+
+        tfAmount = new JTextField();
+        tfAmount.setBounds(159, 194, 134, 28);
+        tfAmount.setColumns(10);
+        add(tfAmount);
+
+        lblAmount = new JLabel("Amount");
+        lblAmount.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lblAmount.setBounds(53, 191, 123, 30);
+        add(lblAmount);
+
+        rdbtnGroup = new ButtonGroup();
+
+        rdbtnTransfer = new JRadioButton("Transfer");
+        rdbtnTransfer.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        rdbtnTransfer.setSelected(true);
+        rdbtnTransfer.setBackground(Color.WHITE);
+        rdbtnTransfer.setBounds(159, 62, 106, 23);
+        add(rdbtnTransfer);
+
+        rdbtnDeposit = new JRadioButton("Deposit");
+        rdbtnDeposit.setBackground(Color.WHITE);
+        rdbtnDeposit.setBounds(269, 62, 134, 23);
+        add(rdbtnDeposit);
+
+        rdbtnGroup.add(rdbtnTransfer);
+        rdbtnGroup.add(rdbtnDeposit);
     }
 
     @Override
     public void setListeners() {
-
+        btnOk.addActionListener(this);
+        btnClear.addActionListener(this);
+        btnClear.setActionCommand(Constants.CLEAR_BUTTON);
+        btnOk.setActionCommand(Constants.OK_BUTTON);
+        rdbtnDeposit.setActionCommand(Constants.DEPOSIT);
+        rdbtnTransfer.setActionCommand(Constants.TRANSFER);
     }
 
     public void displayMessage(String msg) {
         JOptionPane.showMessageDialog(this, msg);
     }
+
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        if(event.getActionCommand().equals(Constants.OK_BUTTON)){
+            String type = rdbtnGroup.getSelection().getActionCommand();
+            if (type.equals(Constants.DEPOSIT)) {
+
+                tfFromAccount.setText(tfToAccount.getText());
+            }
+            int fromAccount = Integer.parseInt(tfFromAccount.getText());
+            int toAccount = Integer.parseInt(tfToAccount.getText());
+            double amount = Double.parseDouble(tfAmount.getText());
+            controller.performDeposit(fromAccount, toAccount, amount, type);
+            clearText();
+        }
+        if(event.getActionCommand().equals(Constants.CLEAR_BUTTON)){
+            clearText();
+        }
+    }
+
+    private void clearText(){
+        tfFromAccount.setText("");
+        tfToAccount.setText("");
+        tfAmount.setText("");
+    }
+
+    private JTextField tfFromAccount;
+    private JTextField tfToAccount;
+    private JTextField tfAmount;
+    private JLabel lblFromAccount;
+    private JLabel lblAmount;
+    private JLabel lblToAccount;
+    private JButton btnClear;
+    private JButton btnOk;
+    private ButtonGroup rdbtnGroup;
+    private JRadioButton rdbtnDeposit;
+    private JRadioButton rdbtnTransfer;
 }

@@ -20,18 +20,20 @@ public class Constants {
     public static final String EMAIL_LABEL = "Email";
     public static final String CREATE_BUTTON = "Create";
     public static final String CLEAR_BUTTON = "Clear";
+    public static final String OK_BUTTON = "Ok";
     public static final String CITY_LABEL = "City";
 
     public static final String ACCOUNTS = "Accounts";
     public static final String CREATE_ACCOUNT = "Create Account";
     public static final String WITHDRAW = "Withdraw";
     public static final String DEPOSIT = "Deposit";
+    public static final String TRANSFER = "Transfer";
+
 
     public static final String ACCOUNTS_TITLE = "Manage Accounts";
     public static final String CREATE_ACCOUNT_TITLE = "Account Creation";
     public static final String DEPOSIT_TITLE = "Deposit";
     public static final String WITHDRAW_TITLE = "Withdraw";
-    
 
     public static final String APP_FONT = "Segoe UI";
 
