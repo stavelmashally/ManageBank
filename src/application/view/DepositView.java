@@ -29,12 +29,12 @@ public class DepositView extends JPanel implements View, ActionListener {
         setBackground(Color.WHITE);
 
         tfFromAccount = new JTextField();
-        tfFromAccount.setBounds(159, 110, 244, 31);
+        tfFromAccount.setBounds(170, 110, 244, 31);
         tfFromAccount.setColumns(10);
         add(tfFromAccount);
 
         tfToAccount = new JTextField();
-        tfToAccount.setBounds(159, 151, 244, 30);
+        tfToAccount.setBounds(170, 151, 244, 30);
         tfToAccount.setColumns(10);
         add(tfToAccount);
 
@@ -63,7 +63,7 @@ public class DepositView extends JPanel implements View, ActionListener {
         add(btnClear);
 
         tfAmount = new JTextField();
-        tfAmount.setBounds(159, 194, 134, 28);
+        tfAmount.setBounds(170, 194, 134, 28);
         tfAmount.setColumns(10);
         add(tfAmount);
 
@@ -74,17 +74,17 @@ public class DepositView extends JPanel implements View, ActionListener {
 
         rdbtnGroup = new ButtonGroup();
 
-        rdbtnTransfer = new JRadioButton("Transfer");
-        rdbtnTransfer.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        rdbtnTransfer.setSelected(true);
-        rdbtnTransfer.setBackground(Color.WHITE);
-        rdbtnTransfer.setBounds(159, 62, 106, 23);
-        add(rdbtnTransfer);
-
         rdbtnDeposit = new JRadioButton("Deposit");
         rdbtnDeposit.setBackground(Color.WHITE);
-        rdbtnDeposit.setBounds(269, 62, 134, 23);
+        rdbtnDeposit.setSelected(true);
+        rdbtnDeposit.setBounds(170, 62, 106, 23);
         add(rdbtnDeposit);
+
+        rdbtnTransfer = new JRadioButton("Transfer");
+        rdbtnTransfer.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        rdbtnTransfer.setBackground(Color.WHITE);
+        rdbtnTransfer.setBounds(275, 62, 134, 23);
+        add(rdbtnTransfer);
 
         rdbtnGroup.add(rdbtnTransfer);
         rdbtnGroup.add(rdbtnDeposit);

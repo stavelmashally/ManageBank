@@ -9,8 +9,8 @@ import application.view.View;
 
 public class TransactionController extends Controller{
 
-    TransactionDao transactionDao;
-    BankAccountDao bankAccountDao;
+    private TransactionDao transactionDao;
+    private BankAccountDao bankAccountDao;
 
     public TransactionController(View view){
         this.view = view;
@@ -27,20 +27,26 @@ public class TransactionController extends Controller{
 
         if (type.equals(Constants.TRANSFER)){
             performWithdraw(fromAccount, amount);
-
+        } else {
+            toAccount = fromAccount;
         }
+
 
         BankAccount toBankAccount = bankAccountDao.findById(toAccount);
 
-        if(toBankAccount != null){
-            double newBalance = toBankAccount.getBalance() + amount;
-            toBankAccount.setBalance(newBalance);
-            bankAccountDao.update(toBankAccount);
-
-            // Store the transaction in DB
-            Transaction transaction = new Transaction(amount, "deposit", fromAccount, toAccount);
-            transactionDao.save(transaction);
+        if(toBankAccount == null){
+            view.displayMessage("Bank account does not exists!");
+            return;
         }
+
+        double newBalance = toBankAccount.getBalance() + amount;
+        toBankAccount.setBalance(newBalance);
+        bankAccountDao.update(toBankAccount);
+
+        // Store the transaction in DB
+        Transaction transaction = new Transaction(amount, "deposit", fromAccount, toAccount);
+        transactionDao.save(transaction);
+
         view.displayMessage("Deposit Successful!");
     }
 
@@ -53,14 +59,19 @@ public class TransactionController extends Controller{
 
         BankAccount bankAccount = bankAccountDao.findById(fromAccount);
 
-        if (bankAccount != null){
-            double newBalance = bankAccount.getBalance() - amount;
-            bankAccount.setBalance(newBalance);
-            bankAccountDao.update(bankAccount);
-
-            // Store the transaction in DB
-            Transaction transaction = new Transaction(amount, "withdraw", fromAccount, fromAccount);
-            transactionDao.save(transaction);
+        if(bankAccount == null){
+            view.displayMessage("Bank account does not exists!");
+            return;
         }
+
+        double newBalance = bankAccount.getBalance() - amount;
+        bankAccount.setBalance(newBalance);
+        bankAccountDao.update(bankAccount);
+
+        // Store the transaction in DB
+        Transaction transaction = new Transaction(amount, "withdraw", fromAccount, fromAccount);
+        transactionDao.save(transaction);
+
+        view.displayMessage("Withdraw Successful!");
     }
 }

@@ -14,22 +14,6 @@ import java.awt.event.MouseListener;
 
 public class HomeView extends JFrame implements View, MouseListener, ActionListener {
 
-    private JPanel contentPane;
-    private JPanel menuIPanel;
-    private ExitButton btnExit;
-    private JPanel titlePanel;
-    private JLabel lblTitle;
-    private JLabel lblPath;
-    private JLabel lblHome;
-    private JPanel cards;
-    private application.view.components.MenuItem accountsItem;
-    private application.view.components.MenuItem createAccountItem;
-    private application.view.components.MenuItem withdrawItem;
-    private application.view.components.MenuItem depositItem;
-    
-    
-    private JLabel lblLogo;
-    private JLabel lblManagebank;
 
     public HomeView() {
         setUndecorated(true);
@@ -137,11 +121,16 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
         cards = new JPanel(new CardLayout(0, 0));
         cards.setBounds(220, 159, 780, 541);
 
+        accountsView = new AccountsView();
+        createAccountView = new CreateAccountView();
+        withdrawView = new WithdrawView();
+        depositView = new DepositView();
+
         // Adding the screens to the card view
-        cards.add(new AccountsView(), Constants.ACCOUNTS);
-        cards.add(new CreateAccountView(), Constants.CREATE_ACCOUNT);
-        cards.add(new WithdrawView(), Constants.WITHDRAW);
-        cards.add(new DepositView(), Constants.DEPOSIT);
+        cards.add(accountsView, Constants.ACCOUNTS);
+        cards.add(createAccountView, Constants.CREATE_ACCOUNT);
+        cards.add(withdrawView, Constants.WITHDRAW);
+        cards.add(depositView, Constants.DEPOSIT);
         contentPane.add(cards, BorderLayout.CENTER);
     }
 
@@ -150,6 +139,9 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
         cl.show(cards, screen);
         lblPath.setText(screen);
         lblTitle.setText(screenTitle);
+        if (screen.equals(Constants.ACCOUNTS)){
+            accountsView.showAccounts();
+        }
     }
 
     @Override
@@ -205,4 +197,23 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
     @Override
     public void mouseReleased(MouseEvent event) {
     }
+
+    private AccountsView accountsView;
+    private CreateAccountView createAccountView;
+    private DepositView depositView;
+    private WithdrawView withdrawView;
+    private JPanel contentPane;
+    private JPanel menuIPanel;
+    private ExitButton btnExit;
+    private JPanel titlePanel;
+    private JLabel lblTitle;
+    private JLabel lblPath;
+    private JLabel lblHome;
+    private JPanel cards;
+    private application.view.components.MenuItem accountsItem;
+    private application.view.components.MenuItem createAccountItem;
+    private application.view.components.MenuItem withdrawItem;
+    private application.view.components.MenuItem depositItem;
+    private JLabel lblLogo;
+    private JLabel lblManagebank;
 }

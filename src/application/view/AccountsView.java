@@ -14,7 +14,7 @@ import javax.swing.border.LineBorder;
 
 public class AccountsView extends JPanel implements View, ActionListener {
 
-    AccountsController controller;
+    private AccountsController controller;
 
     public AccountsView() {
         initComponents();

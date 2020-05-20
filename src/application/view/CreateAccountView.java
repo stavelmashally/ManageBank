@@ -32,16 +32,16 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 
 		lblAccountDetails = new JLabel(Constants.ACCOUNT_DETAILS_LABEL);
 		lblAccountDetails.setFont(new Font(Constants.APP_FONT, Font.PLAIN, 24));
-		lblAccountDetails.setBounds(70, 40, 214, 38);
+		lblAccountDetails.setBounds(70, 10, 214, 38);
 		add(lblAccountDetails);
 
-		tfFname = createTextField(Constants.FNAME_LABEL, 100);
-		tfLname = createTextField(Constants.LNAME_LABEL, 150);
-		tfId = createTextField(Constants.ID_LABEL, 200);
-		tfEmail = createTextField(Constants.EMAIL_LABEL, 250);
-		tfPhone = createTextField(Constants.PHONE_LABEL, 300);
-		tfAddress = createTextField(Constants.ADDRESS_LABEL, 350);
-		tfCity = createTextField(Constants.CITY_LABEL, 400);
+		tfFname = createTextField(Constants.FNAME_LABEL, 60);
+		tfLname = createTextField(Constants.LNAME_LABEL, 110);
+		tfId = createTextField(Constants.ID_LABEL, 160);
+		tfEmail = createTextField(Constants.EMAIL_LABEL, 210);
+		tfPhone = createTextField(Constants.PHONE_LABEL, 260);
+		tfAddress = createTextField(Constants.ADDRESS_LABEL, 310);
+		tfCity = createTextField(Constants.CITY_LABEL, 360);
 		add(tfId);
 		add(tfEmail);
 		add(tfFname);
@@ -58,18 +58,18 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		rdbtnNormal.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		rdbtnNormal.setSelected(true);
 		rdbtnNormal.setBackground(Color.WHITE);
-		rdbtnNormal.setBounds(70, 450, 75, 23);
+		rdbtnNormal.setBounds(70, 400, 75, 23);
 		add(rdbtnNormal);
 		
 		rdbtnOverdraft = new JRadioButton("Savings");
 		rdbtnOverdraft.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		rdbtnOverdraft.setBackground(Color.WHITE);
-		rdbtnOverdraft.setBounds(145, 450, 95, 23);
+		rdbtnOverdraft.setBounds(145, 400, 95, 23);
 		add(rdbtnOverdraft);
 		
 		rdbtnBusiness = new JRadioButton("Business");
 		rdbtnBusiness.setBackground(Color.WHITE);
-		rdbtnBusiness.setBounds(240, 450, 95, 23);
+		rdbtnBusiness.setBounds(240, 400, 95, 23);
 		add(rdbtnBusiness);
 		
 		rdbtnGroup.add(rdbtnNormal);
@@ -80,13 +80,13 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		btnCreate.setBorder(null);
 		btnCreate.setForeground(Color.WHITE);
 		btnCreate.setBackground(new Color(33, 150, 243));
-		btnCreate.setBounds(70, 500, 120, 38);
+		btnCreate.setBounds(70, 450, 120, 38);
 		add(btnCreate);
 
 		btnClear = new JButton(Constants.CLEAR_BUTTON);
 		btnClear.setForeground(Color.WHITE);
 		btnClear.setBackground(new Color(33, 150, 243));
-		btnClear.setBounds(210, 500, 120, 38);
+		btnClear.setBounds(210, 450, 120, 38);
 		add(btnClear);
     }
 
