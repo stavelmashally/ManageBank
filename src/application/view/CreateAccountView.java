@@ -2,6 +2,7 @@ package application.view;
 import java.awt.event.MouseEvent;
 import application.controllers.CreateAccountController;
 import application.util.Constants;
+import application.view.components.HintTextField;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +23,6 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		controller = new CreateAccountController(this);
 	}
 
-
     @Override
     public void initComponents() {
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -35,13 +35,13 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		lblAccountDetails.setBounds(70, 10, 214, 38);
 		add(lblAccountDetails);
 
-		tfFname = createTextField(Constants.FNAME_LABEL, 60);
-		tfLname = createTextField(Constants.LNAME_LABEL, 110);
-		tfId = createTextField(Constants.ID_LABEL, 160);
-		tfEmail = createTextField(Constants.EMAIL_LABEL, 210);
-		tfPhone = createTextField(Constants.PHONE_LABEL, 260);
-		tfAddress = createTextField(Constants.ADDRESS_LABEL, 310);
-		tfCity = createTextField(Constants.CITY_LABEL, 360);
+		tfFname = createHintTextField(Constants.FNAME_LABEL, 60);
+		tfLname = createHintTextField(Constants.LNAME_LABEL, 110);
+		tfId = createHintTextField(Constants.ID_LABEL, 160);
+		tfEmail = createHintTextField(Constants.EMAIL_LABEL, 210);
+		tfPhone = createHintTextField(Constants.PHONE_LABEL, 260);
+		tfAddress = createHintTextField(Constants.ADDRESS_LABEL, 310);
+		tfCity = createHintTextField(Constants.CITY_LABEL, 360);
 		add(tfId);
 		add(tfEmail);
 		add(tfFname);
@@ -90,14 +90,14 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 		add(btnClear);
     }
 
-    private JTextField createTextField(String text, int pos){
-		JTextField textField = new JTextField(text);
-		textField.setToolTipText(text);
-		textField.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
-		textField.setForeground(Color.GRAY);
-		textField.setColumns(10);
-		textField.setBounds(70, pos, 260, 30);
-		return textField;
+    private HintTextField createHintTextField(String text, int pos){
+		HintTextField hintTextField= new HintTextField(text);
+		hintTextField.setToolTipText(text);
+		hintTextField.setBorder(new LineBorder(Color.LIGHT_GRAY, 1));
+		hintTextField.setForeground(Color.GRAY);
+		hintTextField.setColumns(10);
+		hintTextField.setBounds(70, pos, 260, 30);
+		return hintTextField;
 	}
 
     @Override
@@ -137,7 +137,7 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if(event.getActionCommand().equals(Constants.CREATE_BUTTON)){
-			int id = Integer.parseInt(tfId.getText());
+			String id = tfId.getText();
 			String fname = tfFname.getText();
 			String lname = tfLname.getText();
 			String email = tfEmail.getText();
@@ -172,4 +172,5 @@ public class CreateAccountView extends JPanel implements View, ActionListener {
 	private JRadioButton rdbtnNormal;
 	private JRadioButton rdbtnBusiness;
 	private JRadioButton rdbtnOverdraft;
+	private HintTextField hintTextField;
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AccountsController extends Controller{
 
-    BankAccountDao bankAccountDao;
+    private BankAccountDao bankAccountDao;
 
     public AccountsController(AccountsView accountsView){
         this.view = accountsView;

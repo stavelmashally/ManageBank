@@ -3,11 +3,9 @@ package application.view;
 
 import application.controllers.TransactionController;
 import application.util.Constants;
-import javafx.scene.control.RadioButton;
-
+import application.view.components.HintTextField;
 import javax.swing.*;
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Cursor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -15,7 +13,7 @@ import java.awt.Font;
 
 public class DepositView extends JPanel implements View, ActionListener {
 
-    TransactionController controller;
+    private TransactionController controller;
     
     public DepositView(){
         initComponents();
@@ -28,12 +26,12 @@ public class DepositView extends JPanel implements View, ActionListener {
         setLayout(null);
         setBackground(Color.WHITE);
 
-        tfFromAccount = new JTextField();
+        tfFromAccount = new HintTextField("Account Number");
         tfFromAccount.setBounds(170, 110, 244, 31);
         tfFromAccount.setColumns(10);
         add(tfFromAccount);
 
-        tfToAccount = new JTextField();
+        tfToAccount = new HintTextField("Account Number");
         tfToAccount.setBounds(170, 151, 244, 30);
         tfToAccount.setColumns(10);
         add(tfToAccount);
@@ -62,7 +60,7 @@ public class DepositView extends JPanel implements View, ActionListener {
         btnClear.setBounds(290, 264, 113, 38);
         add(btnClear);
 
-        tfAmount = new JTextField();
+        tfAmount = new HintTextField("Insert Amount");
         tfAmount.setBounds(170, 194, 134, 28);
         tfAmount.setColumns(10);
         add(tfAmount);
@@ -109,7 +107,6 @@ public class DepositView extends JPanel implements View, ActionListener {
         if(event.getActionCommand().equals(Constants.OK_BUTTON)){
             String type = rdbtnGroup.getSelection().getActionCommand();
             if (type.equals(Constants.DEPOSIT)) {
-
                 tfFromAccount.setText(tfToAccount.getText());
             }
             int fromAccount = Integer.parseInt(tfFromAccount.getText());
@@ -124,14 +121,14 @@ public class DepositView extends JPanel implements View, ActionListener {
     }
 
     private void clearText(){
-        tfFromAccount.setText("");
-        tfToAccount.setText("");
-        tfAmount.setText("");
+        tfFromAccount.setText("Account Number");
+        tfToAccount.setText("Account Number");
+        tfAmount.setText("Insert Amount");
     }
 
-    private JTextField tfFromAccount;
-    private JTextField tfToAccount;
-    private JTextField tfAmount;
+    private HintTextField tfFromAccount;
+    private HintTextField tfToAccount;
+    private HintTextField tfAmount;
     private JLabel lblFromAccount;
     private JLabel lblAmount;
     private JLabel lblToAccount;

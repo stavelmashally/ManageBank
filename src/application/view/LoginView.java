@@ -13,7 +13,7 @@ import javax.swing.border.LineBorder;
 
 public class LoginView extends JFrame implements View, ActionListener {
 
-    LoginController controller;
+    private LoginController controller;
 
     public LoginView() {
         initComponents();

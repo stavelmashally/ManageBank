@@ -3,6 +3,7 @@ package application.view;
 import application.controllers.TransactionController;
 import application.model.Transaction;
 import application.util.Constants;
+import application.view.components.HintTextField;
 
 import javax.swing.*;
 import java.awt.Font;
@@ -52,12 +53,12 @@ public class WithdrawView extends JPanel implements View, ActionListener {
         btnClear.setBounds(289, 218, 113, 38);
         add(btnClear);
 
-        tfFromAccount = new JTextField();
+        tfFromAccount = new HintTextField("Account Number");
         tfFromAccount.setColumns(10);
         tfFromAccount.setBounds(161, 88, 244, 30);
         add(tfFromAccount);
 
-        tfAmount = new JTextField();
+        tfAmount = new HintTextField("Insert Amount");
         tfAmount.setColumns(10);
         tfAmount.setBounds(161, 141, 244, 30);
         add(tfAmount);
@@ -82,13 +83,13 @@ public class WithdrawView extends JPanel implements View, ActionListener {
             controller.performWithdraw(fromAccount, amount);
         }
         if(event.getActionCommand().equals(Constants.CLEAR_BUTTON)){
-            tfFromAccount.setText("");
-            tfAmount.setText("");
+            tfFromAccount.setText("Account Number");
+            tfAmount.setText("Insert Amount");
         }
     }
 
-    private JTextField tfFromAccount;
-    private JTextField tfAmount;
+    private HintTextField tfFromAccount;
+    private HintTextField tfAmount;
     private JLabel lblFromAccount;
     private JLabel lblAmount;
     private JButton btnClear;

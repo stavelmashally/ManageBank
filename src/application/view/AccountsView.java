@@ -1,15 +1,14 @@
 package application.view;
 
 import application.controllers.AccountsController;
-import application.model.BankAccount;
 import application.util.Constants;
 import application.view.components.AccountTableModel;
+import application.view.components.HintTextField;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import javax.swing.border.LineBorder;
 
 public class AccountsView extends JPanel implements View, ActionListener {
@@ -30,7 +29,7 @@ public class AccountsView extends JPanel implements View, ActionListener {
         setLayout(null);
 
         // Search bar
-        tfSearch = new JTextField();
+        tfSearch = new HintTextField("Enter Account Number");
         tfSearch.setBounds(68, 44, 361, 25);
         add(tfSearch);
 
@@ -80,12 +79,18 @@ public class AccountsView extends JPanel implements View, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(Constants.SEARCH_BUTTON)) {
-            String name = tfSearch.getText().trim();
-            tfSearch.setText("");
+            if (!tfSearch.getText().isEmpty()){
+                int accountNumber = Integer.parseInt(tfSearch.getText());
+                int row = tableModel.find(accountNumber);
+                if(row != -1){
+                    table.addRowSelectionInterval(row, row);
+                }
+            }
+            tfSearch.setText("Enter Account Number");
         }
     }
 
-    private JTextField tfSearch;
+    private HintTextField tfSearch;
     private JButton btnSearch;
     private JLabel lblSearchIcon;
     private JScrollPane tablePane;

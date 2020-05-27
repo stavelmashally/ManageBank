@@ -12,8 +12,8 @@ import java.util.Date;
 
 public class CreateAccountController extends Controller{
 
-    BankAccountDao bankAccountDao;
-    CustomerDao customerDao;
+    private BankAccountDao bankAccountDao;
+    private CustomerDao customerDao;
 
     public CreateAccountController(View view){
         this.view = view;
@@ -21,7 +21,7 @@ public class CreateAccountController extends Controller{
         customerDao = new CustomerDao();
 
     }
-    public void createAccount(int id, String fname, String lname, String email, String phone,
+    public void createAccount(String id, String fname, String lname, String email, String phone,
                               String address, String city, String type){
 
         if(fname.isEmpty() || lname.isEmpty() || email.isEmpty() || phone.isEmpty() ||
@@ -30,10 +30,10 @@ public class CreateAccountController extends Controller{
             return;
         }
 
-        Customer customer = new Customer(id, fname, lname, email, phone, address, city);
+        Customer customer = new Customer(Integer.parseInt(id), fname, lname, email, phone, address, city);
         customerDao.save(customer);
 
-        BankAccount bankAccount = new BankAccount(id, type);
+        BankAccount bankAccount = new BankAccount(Integer.parseInt(id), type);
         bankAccountDao.save(bankAccount);
 
         view.displayMessage("Account Created Successfully!");

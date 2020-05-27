@@ -7,10 +7,11 @@ import java.util.List;
 
 public class AccountTableModel extends AbstractTableModel {
 
-    private final String[] columnNames = {"Account No","Customer Id","Type", "Balance"};
+    private final String[] columnNames = {"Account No", "Customer Id", "Type", "Balance"};
     private List<BankAccount> bankAccountList;
 
     public AccountTableModel(){
+
     }
 
     public void setList(List<BankAccount> bankAccounts){
@@ -50,5 +51,14 @@ public class AccountTableModel extends AbstractTableModel {
 
     public String getColumnName(int col) {
         return columnNames[col];
+    }
+
+    public int find(int accountNumber){
+        for (int i = 0; i < bankAccountList.size(); ++i){
+            if (bankAccountList.get(i).getAccountNo() == accountNumber){
+                return i;
+            }
+        }
+        return -1;
     }
 }
