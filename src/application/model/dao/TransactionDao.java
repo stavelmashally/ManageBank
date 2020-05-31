@@ -1,6 +1,6 @@
 package application.model.dao;
 
-import application.model.DatabaseManager;
+import application.util.DatabaseManager;
 import application.model.Transaction;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +33,6 @@ public class TransactionDao implements Dao<Transaction> {
                 "'" + transaction.getTransactionType() + "',\n" +
                 "" + transaction.getFromAccount() + ",\n" +
                 "" +  transaction.getToAccount() + "\n" + ");";
-        System.out.println(query);
         return DatabaseManager.getInstance().executeInsert(query);
     }
 
@@ -45,7 +44,6 @@ public class TransactionDao implements Dao<Transaction> {
                 + ",fromAccount=" + transaction.getFromAccount()
                 + ",toAccount=" + transaction.getToAccount()
                 + " WHERE transactionId=" + transaction.getTransactionId();
-        System.out.println(query);
         return DatabaseManager.getInstance().executeUpdate(query);
     }
 

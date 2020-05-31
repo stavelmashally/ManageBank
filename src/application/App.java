@@ -7,10 +7,10 @@ import javax.swing.*;
 public class App {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-//            LoginView frame = new LoginView();
-//            frame.setVisible(true);
-            HomeView homeView = new HomeView();
-            homeView.setVisible(true);
+            LoginView frame = new LoginView();
+            frame.setVisible(true);
+//            HomeView homeView = new HomeView();
+//            homeView.setVisible(true);
         });
     }
 }

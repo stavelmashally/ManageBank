@@ -27,6 +27,7 @@ public class Transaction {
         this.fromAccount = fromAccount;
         this.toAccount = toAccount;
     }
+
     public Transaction(){
 
     }

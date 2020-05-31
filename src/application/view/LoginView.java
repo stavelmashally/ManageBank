@@ -71,7 +71,7 @@ public class LoginView extends JFrame implements View, ActionListener {
         mainPanel.add(lblSignin);
 
         // Username label
-        lblUsername = new JLabel(Constants.USERNAME_LABEL);
+        lblUsername = new JLabel(Constants.EMAIL_LABEL);
         lblUsername.setFont(new Font(Constants.APP_FONT, Font.BOLD, 14));
         lblUsername.setForeground(Color.DARK_GRAY);
         lblUsername.setBounds(257, 118, 95, 15);

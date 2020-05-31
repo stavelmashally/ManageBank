@@ -1,9 +1,7 @@
 package application.model.dao;
 
 import application.model.Customer;
-import application.model.DatabaseManager;
-import application.model.Employee;
-
+import application.util.DatabaseManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

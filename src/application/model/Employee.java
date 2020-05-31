@@ -38,4 +38,5 @@ public class Employee extends User {
     public void setPrivileges(String privileges) {
         this.privileges = privileges;
     }
+
 }

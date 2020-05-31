@@ -1,13 +1,12 @@
 package application.model.dao;
 
 import application.model.Employee;
-import application.model.DatabaseManager;
+import application.util.DatabaseManager;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class EmployeeDao implements Dao<Employee>{
 

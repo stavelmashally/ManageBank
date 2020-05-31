@@ -1,4 +1,4 @@
-package application.model;
+package application.util;
 
 import java.sql.*;
 

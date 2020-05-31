@@ -1,6 +1,5 @@
 package application.view;
 
-
 import application.controllers.TransactionController;
 import application.util.Constants;
 import application.view.components.HintTextField;
@@ -41,7 +40,7 @@ public class DepositView extends JPanel implements View, ActionListener {
         lblFromAccount.setBounds(49, 108, 123, 30);
         add(lblFromAccount);
 
-        lblToAccount = new JLabel("to account");
+        lblToAccount = new JLabel("To Account");
         lblToAccount.setFont(new Font("Tahoma", Font.PLAIN, 17));
         lblToAccount.setBounds(53, 150, 119, 29);
         add(lblToAccount);

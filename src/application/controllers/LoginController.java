@@ -7,7 +7,7 @@ import application.view.View;
 
 public class LoginController extends Controller{
 
-    EmployeeDao employeeDao;
+    private EmployeeDao employeeDao;
 
     public LoginController(View view){
         this.view = view;
@@ -20,7 +20,7 @@ public class LoginController extends Controller{
             return false;
         }
 
-        if (password.length() < 6 || email.length() < 7){
+        if (password.length() < 5 || email.length() < 7){
             view.displayMessage("Wrong Email or Password!");
             return false;
         }
