@@ -111,9 +111,6 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
         menuIPanel.add(createAccountItem);
         menuIPanel.add(withdrawItem);
         menuIPanel.add(depositItem);
-        
-
-      
     }
 
     private void createScreens() {
@@ -135,12 +132,14 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
     }
 
     private void changeScreen(String screen, String screenTitle) {
+        System.out.println(screen);
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, screen);
         lblPath.setText(screen);
         lblTitle.setText(screenTitle);
         if (screen.equals(Constants.ACCOUNTS)){
             accountsView.showAccounts();
+            System.out.println("yes");
         }
     }
 

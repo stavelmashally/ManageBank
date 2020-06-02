@@ -16,6 +16,7 @@ public class AccountTableModel extends AbstractTableModel {
 
     public void setList(List<BankAccount> bankAccounts){
         this.bankAccountList = bankAccounts;
+        fireTableDataChanged();
     }
 
     @Override
@@ -25,6 +26,7 @@ public class AccountTableModel extends AbstractTableModel {
         }
         return bankAccountList.size();
     }
+
 
     @Override
     public int getColumnCount() {

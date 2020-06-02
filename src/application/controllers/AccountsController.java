@@ -5,6 +5,8 @@ import application.model.dao.BankAccountDao;
 import application.view.AccountsView;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 public class AccountsController extends Controller{
 
@@ -18,4 +20,5 @@ public class AccountsController extends Controller{
     public List<BankAccount> getBankAccounts(){
         return bankAccountDao.findAll();
     }
+
 }

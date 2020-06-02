@@ -20,10 +20,17 @@ public class BankAccountDaoTest {
 
     @Before
     public void setup(){
+
         bankAccountDao = new BankAccountDao();
 
-        testAccount1 = new BankAccount(1234, "Normal");
-        testAccount2 = new BankAccount(1235, "Business");
+        testAccount1 = BankAccount.builder()
+                .withCustomerId(1234)
+                .withAccountType("Normal")
+                .build();
+        testAccount2 = BankAccount.builder()
+                .withCustomerId(1235)
+                .withAccountType("Business")
+                .build();
 
         bankAccountDao.save(testAccount1);
         bankAccountDao.save(testAccount2);

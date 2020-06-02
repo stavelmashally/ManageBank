@@ -33,7 +33,11 @@ public class CreateAccountController extends Controller{
         Customer customer = new Customer(Integer.parseInt(id), fname, lname, email, phone, address, city);
         customerDao.save(customer);
 
-        BankAccount bankAccount = new BankAccount(Integer.parseInt(id), type);
+        BankAccount bankAccount = BankAccount.builder()
+                .withCustomerId(Integer.parseInt(id))
+                .withAccountType(type)
+                .build();
+
         bankAccountDao.save(bankAccount);
 
         view.displayMessage("Account Created Successfully!");

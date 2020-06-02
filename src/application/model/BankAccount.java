@@ -9,12 +9,8 @@ public class BankAccount {
     private Date creationDate;
     private String accountType;
 
-    public BankAccount(int customerId, String accountType) {
-        this.customerId = customerId;
-        this.accountType = accountType;
-    }
-
-    public BankAccount(){
+    public static BankAccountBuilder builder(){
+        return new BankAccountBuilder();
     }
 
     public String getAccountType() {
