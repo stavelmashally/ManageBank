@@ -4,8 +4,8 @@ import java.sql.*;
 
 public class DatabaseManager {
 
-    public static final String DB_URL = "jdbc:sqlite:bank.db";
-    //public static final String DB_TEST_URL = "jdbc:sqlite:test.db";
+    //public static final String DB_URL = "jdbc:sqlite:bank.db";
+    public static final String DB_TEST_URL = "jdbc:sqlite:test.db";
 
     private static DatabaseManager instance;
     private Connection connection;
@@ -22,7 +22,7 @@ public class DatabaseManager {
     private Connection getConnection() {
         if (connection == null) {
             try {
-                connection = DriverManager.getConnection(DB_URL);
+                connection = DriverManager.getConnection(DB_TEST_URL);
                 System.out.println("Connected Successfully to DB");
             } catch (SQLException e) {
                 System.err.println("Error: " + e.getMessage());
@@ -61,4 +61,6 @@ public class DatabaseManager {
             return false;
         }
     }
+
+
 }

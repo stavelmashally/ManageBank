@@ -21,6 +21,7 @@ public class CreateAccountController extends Controller{
         customerDao = new CustomerDao();
 
     }
+
     public void createAccount(String id, String fname, String lname, String email, String phone,
                               String address, String city, String type){
 
