@@ -105,13 +105,14 @@ public class DepositView extends JPanel implements View, ActionListener {
     public void actionPerformed(ActionEvent event) {
         if(event.getActionCommand().equals(Constants.OK_BUTTON)){
             String type = rdbtnGroup.getSelection().getActionCommand();
-            if (type.equals(Constants.DEPOSIT)) {
-                tfFromAccount.setText(tfToAccount.getText());
+            try {
+                int fromAccount = Integer.parseInt(tfFromAccount.getText());
+                int toAccount = Integer.parseInt(tfToAccount.getText());
+                double amount = Double.parseDouble(tfAmount.getText());
+                controller.performDeposit(fromAccount, toAccount, amount, type);
+            } catch (NumberFormatException e){
+                displayMessage("Wrong details!");
             }
-            int fromAccount = Integer.parseInt(tfFromAccount.getText());
-            int toAccount = Integer.parseInt(tfToAccount.getText());
-            double amount = Double.parseDouble(tfAmount.getText());
-            controller.performDeposit(fromAccount, toAccount, amount, type);
             clearText();
         }
         if(event.getActionCommand().equals(Constants.CLEAR_BUTTON)){
@@ -120,9 +121,9 @@ public class DepositView extends JPanel implements View, ActionListener {
     }
 
     private void clearText(){
-        tfFromAccount.setText("Account Number");
-        tfToAccount.setText("Account Number");
-        tfAmount.setText("Insert Amount");
+        tfFromAccount.setText("");
+        tfToAccount.setText("");
+        tfAmount.setText("");
     }
 
     private HintTextField tfFromAccount;

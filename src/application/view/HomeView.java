@@ -95,12 +95,12 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
         lblLogo.setBounds(0, 12, 220, 63);
         menuIPanel.add(lblLogo);
         
-        lblManagebank = new JLabel(Constants.MENU_LOGO_LABEL);
-        lblManagebank.setHorizontalAlignment(SwingConstants.CENTER);
-        lblManagebank.setBounds(0, 54, 220, 44);
-        lblManagebank.setForeground(Color.WHITE);
-        lblManagebank.setFont(new Font(Constants.APP_FONT, Font.BOLD | Font.ITALIC, 21));
-        menuIPanel.add(lblManagebank);
+        lblManageBank = new JLabel(Constants.MENU_LOGO_LABEL);
+        lblManageBank.setHorizontalAlignment(SwingConstants.CENTER);
+        lblManageBank.setBounds(0, 54, 220, 44);
+        lblManageBank.setForeground(Color.WHITE);
+        lblManageBank.setFont(new Font(Constants.APP_FONT, Font.BOLD | Font.ITALIC, 21));
+        menuIPanel.add(lblManageBank);
 
         // Create menu items
         accountsItem = new application.view.components.MenuItem(Constants.ACCOUNTS, Constants.ACCOUNTS_ICON, 100);
@@ -132,14 +132,12 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
     }
 
     private void changeScreen(String screen, String screenTitle) {
-        System.out.println(screen);
         CardLayout cl = (CardLayout) (cards.getLayout());
         cl.show(cards, screen);
         lblPath.setText(screen);
         lblTitle.setText(screenTitle);
         if (screen.equals(Constants.ACCOUNTS)){
             accountsView.showAccounts();
-            System.out.println("yes");
         }
     }
 
@@ -214,5 +212,5 @@ public class HomeView extends JFrame implements View, MouseListener, ActionListe
     private application.view.components.MenuItem withdrawItem;
     private application.view.components.MenuItem depositItem;
     private JLabel lblLogo;
-    private JLabel lblManagebank;
+    private JLabel lblManageBank;
 }

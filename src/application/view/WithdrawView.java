@@ -78,9 +78,13 @@ public class WithdrawView extends JPanel implements View, ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
         if(event.getActionCommand().equals(Constants.OK_BUTTON)){
-            int fromAccount = Integer.parseInt(tfFromAccount.getText());
-            double amount = Double.parseDouble(tfAmount.getText());
-            controller.performWithdraw(fromAccount, amount);
+            try {
+                int fromAccount = Integer.parseInt(tfFromAccount.getText());
+                double amount = Double.parseDouble(tfAmount.getText());
+                controller.performWithdraw(fromAccount, amount);
+            } catch (NumberFormatException e){
+                displayMessage("Wrong details!");
+            }
         }
         if(event.getActionCommand().equals(Constants.CLEAR_BUTTON)){
             tfFromAccount.setText("Account Number");
